@@ -1,0 +1,34 @@
+mkdir -p /volume1/docker/homeassistant
+
+mkdir -p /volume1/docker/esphome/config
+
+mkdir -p /volume1/docker/nodered/data
+
+mkdir -p /volume1/docker/mosquitto/config
+mkdir -p /volume1/docker/misquitto/data
+mkdir -p /volume1/docker/mosquitto/log
+
+mkdir -p /volume1/docker/vcode
+
+mkdir -p /volume1/docker/zigbee2mqtt/data
+
+mkdir -p /volume1/docker/duplicati/config
+mkdir -p /volume1/docker/duplicati/backups
+mkdir -p /volume1/docker/duplicati/source
+
+
+cd /volume1/docker
+wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose.yml
+
+cd /volume1/docker/mosquitto/config
+wget https://raw.githubusercontent.com/epulaecorp/NAS/main/mosquitto/mosquitto.conf
+wget https://raw.githubusercontent.com/epulaecorp/NAS/main/mosquitto/pwfile
+
+
+chmod -R 777 /volume1/docker
+
+cd /volume1/docker
+docker-compose up -d
+
+cd /volume1/docker/zigbee2mqtt/data
+wget https://raw.githubusercontent.com/epulaecorp/NAS/main/zigbee2mqtt/data/configuration.yaml
