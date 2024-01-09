@@ -60,9 +60,9 @@ services:
     image: linuxserver/code-server:latest
     container_name: codeserver
     volumes:
-      - /volume1/docker/codeserver2:/config
-      - /volume1/docker/homeassistant2:/config/workspace/HomeAssistant
-      - /volume1/docker/esphome2:/config/workspace/ESPHome
+      - /volume1/docker/vcode:/config
+      - /volume1/docker/homeassistant:/config/workspace/HomeAssistant
+      - /volume1/docker/esphome:/config/workspace/ESPHome
     restart: always
     privileged: true
     network_mode: host
