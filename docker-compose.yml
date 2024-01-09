@@ -1,0 +1,88 @@
+
+version: '3'
+services:
+  
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:latest
+    volumes:
+      - /volume1/docker/homeassistant:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: always
+    privileged: true
+    network_mode: host
+
+
+  esphome:
+    container_name: esphome
+    image: esphome/esphome:latest
+    volumes:
+      - /volume1/docker/esphome/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - USERNAME=admin
+      - PASSWORD=Iz022394
+      
+
+  nodered:
+    container_name: nodered
+    image: nodered/node-red:latest
+    volumes:
+      - /volume1/docker/nodered/data:/data
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - TZ=America/Mexico_City
+
+
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto:latest
+    volumes:
+      - /volume1/docker/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - /volume1/docker/mosquitto/config:/mosquitto/config
+      - /volume1/docker/mosquitto/data:/mosquitto/data
+      - /volume1/docker/mosquitto/log:/mosquitto/log
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - TZ=America/Mexico_City
+
+
+  code-server:
+    image: linuxserver/code-server:latest
+    container_name: codeserver
+    volumes:
+      - /volume1/docker/codeserver2:/config
+      - /volume1/docker/homeassistant2:/config/workspace/HomeAssistant
+      - /volume1/docker/esphome2:/config/workspace/ESPHome
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=America/Mexico_City
+      - PASSWORD=Iz022394
+      - DEFAULT_WORKSPACE=/config/workspace
+
+
+  watchtower:     
+    image: containrrr/watchtower
+    container_name: watchtower 
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always 
+    environment: 
+      - WATCHTOWER_SCHEDULE="0 0 1 * * *" 
+      - TZ=America/Mexico_City
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_POLL_INTERVAL=3600 
+      - WATCHTOWER_DEBUG=true    
