@@ -72,6 +72,21 @@ services:
       - TZ=America/Mexico_City
       - PASSWORD=Iz022394
       - DEFAULT_WORKSPACE=/config/workspace
+  
+  duplicati:
+    image: linuxserver/duplicati:latest
+    container_name: duplicati
+    volumes:
+      - /volume1/docker/duplicati/config:/config
+      - /volume1/docker/duplicati/backups:/backups
+      - /volume1/docker/duplicati/source:/source
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=America/Mexico_City
 
 
   watchtower:     
@@ -81,7 +96,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always 
     environment: 
-      - WATCHTOWER_SCHEDULE="0 0 1 * * *" 
       - TZ=America/Mexico_City
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_POLL_INTERVAL=3600 
