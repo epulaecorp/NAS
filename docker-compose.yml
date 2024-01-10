@@ -84,6 +84,7 @@ services:
       - PGID=0
       - TZ=America/Mexico_City
       - PASSWORD=Iz022394
+      - SUDO_PASSWORD=Pa$$w0rd
       - DEFAULT_WORKSPACE=/config/workspace
   
   duplicati:
