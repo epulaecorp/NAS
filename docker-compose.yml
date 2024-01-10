@@ -107,15 +107,15 @@ services:
     image: mariadb
     container_name: mariadb
     volumes:
-     - /volume1/docker/mariadb:/var/lib/mysql
+      - /volume1/docker/mariadb:/var/lib/mysql
     restart: always
     privileged: true
     network_mode: host
     environment:
-      MARIADB_ROOT_PASSWORD=toor
-      MARIADB_USER=homeassistant
-      MARIADB_PASSWORD=iothome
-      MARIADB_DATABASE=hass_db
+      - MARIADB_ROOT_PASSWORD=toor
+      - MARIADB_USER=homeassistant
+      - MARIADB_PASSWORD=iothome
+      - MARIADB_DATABASE=hass_db
       
 
   watchtower:     
