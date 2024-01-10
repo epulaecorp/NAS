@@ -56,6 +56,19 @@ services:
       - TZ=America/Mexico_City
 
 
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    volumes:
+      - /volume1/docker/zigbee2mqtt/data:/app/data
+      - /run/udev:/run/udev:ro
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - TZ=America/Mexico_City
+      
+
   code-server:
     image: linuxserver/code-server:latest
     container_name: codeserver
@@ -88,6 +101,21 @@ services:
       - PGID=0
       - TZ=America/Mexico_City
 
+
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    volumes:
+     - /volume1/docker/mariadb:/var/lib/mysql
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      MARIADB_ROOT_PASSWORD=toor
+      MARIADB_USER=homeassistant
+      MARIADB_PASSWORD=iothome
+      MARIADB_DATABASE=hass_db
+      
 
   watchtower:     
     image: containrrr/watchtower
