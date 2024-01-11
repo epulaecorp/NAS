@@ -1,21 +1,19 @@
 mkdir -p /volume1/docker/homeassistant
-
 mkdir -p /volume1/docker/esphome/config
-
 mkdir -p /volume1/docker/nodered/data
-
 mkdir -p /volume1/docker/mosquitto/config
-mkdir -p /volume1/docker/misquitto/data
+mkdir -p /volume1/docker/mosquitto/data
 mkdir -p /volume1/docker/mosquitto/log
-
 mkdir -p /volume1/docker/vcode
-
 mkdir -p /volume1/docker/zigbee2mqtt/data
-
 mkdir -p /volume1/docker/duplicati/config
 mkdir -p /volume1/docker/duplicati/backups
 mkdir -p /volume1/docker/duplicati/source
-
+mkdir -p /volume1/docker/zigbee2mqtt/data
+mkdir -p /volume1/docker/duplicati/config
+mkdir -p /volume1/docker/duplicati/backups
+mkdir -p /volume1/docker/duplicati/source
+mkdir -p /volume1/docker/mariadb
 
 cd /volume1/docker
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose.yml
@@ -31,4 +29,28 @@ cd /volume1/docker
 docker-compose up -d
 
 cd /volume1/docker/zigbee2mqtt/data
+rm configuration.yaml
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/zigbee2mqtt/data/configuration.yaml
+chmod -R 777 /volume1/docker
+
+cd /volume1/docker/nodered/data
+rm settings.js
+wget https://raw.githubusercontent.com/epulaecorp/NAS/main/nodered/data/settings.js
+chmod -R 777 /volume1/docker
+
+docker exec -it homeassistant bash
+wget -O - https://get.hacs.xyz | bash
+reboot
+exit
+
+docker exec -it nodered bash
+npm install @node-red-contrib-themes/theme-collection
+reboot
+exit
+
+docker exec -it mosquitto sh
+mosquitto_passwd -c pwfile iot
+Iz022394
+Iz022394
+reboot
+exit
