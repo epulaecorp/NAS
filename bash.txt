@@ -9,10 +9,6 @@ mkdir -p /volume1/docker/zigbee2mqtt/data
 mkdir -p /volume1/docker/duplicati/config
 mkdir -p /volume1/docker/duplicati/backups
 mkdir -p /volume1/docker/duplicati/source
-mkdir -p /volume1/docker/zigbee2mqtt/data
-mkdir -p /volume1/docker/duplicati/config
-mkdir -p /volume1/docker/duplicati/backups
-mkdir -p /volume1/docker/duplicati/source
 mkdir -p /volume1/docker/mariadb
 
 cd /volume1/docker
