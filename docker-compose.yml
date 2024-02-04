@@ -27,8 +27,8 @@ services:
     environment:
       - USERNAME=admin
       - PASSWORD=Iz022394
-      
 
+      
   nodered:
     container_name: nodered
     image: nodered/node-red:latest
@@ -127,5 +127,5 @@ services:
     environment: 
       - TZ=America/Mexico_City
       - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_POLL_INTERVAL=3600 
-      - WATCHTOWER_DEBUG=true    
+      - WATCHTOWER_SCHEDULE="* 0 5 * * 5"
+      - WATCHTOWER_INCLUDE_RESTARTING=true    
