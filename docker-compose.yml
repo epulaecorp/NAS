@@ -116,7 +116,21 @@ services:
       - MARIADB_USER=homeassistant
       - MARIADB_PASSWORD=iothome
       - MARIADB_DATABASE=hass_db
-      
+
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=America/Mexico_City
+      - VERSION=docker
+    volumes:
+      - /volume1/docker/plex:/config
+      - /volume1/docker/plex/series:/series
+      - /volume1/docker/plex/movies:/movies
+    restart: unless-stopped
 
   watchtower:     
     image: containrrr/watchtower
