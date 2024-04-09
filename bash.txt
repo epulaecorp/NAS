@@ -10,6 +10,9 @@ mkdir -p /volume1/docker/duplicati/config
 mkdir -p /volume1/docker/duplicati/backups
 mkdir -p /volume1/docker/duplicati/source
 mkdir -p /volume1/docker/mariadb
+mkdir -p /volume1/docker/plex/config
+mkdir -p /volume1/docker/plex/peliculas
+mkdir -p /volume1/docker/plex/series
 
 cd /volume1/docker
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose.yml
