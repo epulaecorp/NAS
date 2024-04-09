@@ -129,7 +129,7 @@ services:
     volumes:
       - /volume1/docker/plex:/config
       - /volume1/docker/plex/series:/series
-      - /volume1/docker/plex/movies:/movies
+      - /volume1/docker/plex/peliculas:/peliculas
     restart: unless-stopped
 
   watchtower:     
