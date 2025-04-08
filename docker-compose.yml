@@ -98,4 +98,5 @@ services:
       - TZ=America/Mexico_City
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_SCHEDULE="* 0 5 * * 5"
-      - WATCHTOWER_INCLUDE_RESTARTING=true    
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_MONITOR_ONLY=true
