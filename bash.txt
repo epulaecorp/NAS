@@ -7,14 +7,18 @@ mkdir -p /volume1/docker/mosquitto/log
 mkdir -p /volume1/docker/vcode
 mkdir -p /volume1/docker/zigbee2mqtt/data
 
+mkdir -p /volume1/docker/Updates
+
 
 cd /volume1/docker
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose.yml
-wget https://raw.githubusercontent.com/epulaecorp/NAS/main/update-homeassistant.sh
-wget https://raw.githubusercontent.com/epulaecorp/NAS/main/update-mosquitto.sh
-wget https://raw.githubusercontent.com/epulaecorp/NAS/main/update-zigbee2mqtt.sh
-wget https://raw.githubusercontent.com/epulaecorp/NAS/main/update-nodered.sh
-wget https://raw.githubusercontent.com/epulaecorp/NAS/main/update-visual-code.sh
+
+cd /volume1/docker/Updates
+wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-homeassistant.sh
+wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-mosquitto.sh
+wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-zigbee2mqtt.sh
+wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-nodered.sh
+wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-visual-code.sh
 
 chmod +x update-*.sh
 
