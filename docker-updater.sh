@@ -8,7 +8,7 @@ trap "echo -e '\n\e[31mActualizacion cancelada. Saliendo del script.\e[0m\n'; ex
 
 # --- Variables de configuracion ---
 DOCKER_COMPOSE_FILE="docker-compose2.yml"
-MANUAL_SERVICES=("homeassistant" "mosquitto" "zigbee2mqtt" "watchtower" "nodered" "esphome" "code-server")
+MANUAL_SERVICES=("homeassistant" "mosquitto" "zigbee2mqtt" "watchtower" "nodered" "esphome" "codeserver")
 
 # --- Funcion para actualizar un servicio Docker Compose ---
 update_service() {
