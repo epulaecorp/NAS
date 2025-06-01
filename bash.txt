@@ -10,6 +10,9 @@ mkdir -p /volume1/docker/zigbee2mqtt/data
 
 cd /volume1/docker
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose.yml
+wget https://raw.githubusercontent.com/epulaecorp/NAS/main/update-homeassistant.sh
+
+
 
 cd /volume1/docker/mosquitto/config
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/mosquitto/mosquitto.conf
