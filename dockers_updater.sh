@@ -10,7 +10,7 @@ trap "echo -e '\n\e[31m¡Actualización cancelada! Saliendo del script.\e[0m\n';
 DOCKER_COMPOSE_FILE="docker-compose2.yml" # Nombre del archivo docker-compose.yml
 # Lista de servicios a actualizar manualmente.
 # Estos son los que NO tienen la etiqueta Watchtower, más Watchtower mismo (para control manual).
-MANUAL_SERVICES=("homeassistant" "mosquitto" "zigbee2mqtt" "watchtower" "nodered" "esphome")
+MANUAL_SERVICES=("homeassistant" "mosquitto" "zigbee2mqtt" "watchtower" "nodered" "esphome" "code-server")
 
 # --- Función para actualizar un servicio Docker Compose ---
 update_service() {
