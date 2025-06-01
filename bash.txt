@@ -7,9 +7,6 @@ mkdir -p /volume1/docker/mosquitto/log
 mkdir -p /volume1/docker/vcode
 mkdir -p /volume1/docker/zigbee2mqtt/data
 
-mkdir -p /volume1/docker/Updates
-
-
 cd /volume1/docker
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose.yml
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose2.yml
