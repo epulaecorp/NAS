@@ -5,8 +5,7 @@ services:
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
       - /volume1/docker/homeassistant:/config
-      # Eliminar el acceso al socket Docker si Home Assistant no gestiona otros contenedores Docker
-      # - /var/run/docker.sock:/var/run/docker.sock 
+      - /var/run/docker.sock:/var/run/docker.sock 
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro # Necesario para Bluetooth, etc.
     restart: always
@@ -92,7 +91,7 @@ services:
       - TZ=America/Mexico_City
     # SIN ETIQUETA - No se actualizará automáticamente
 
-  code-server:
+  codeserver:
     image: linuxserver/code-server:latest
     container_name: codeserver
     volumes:
