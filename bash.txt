@@ -13,7 +13,7 @@ mkdir -p /volume1/docker/Updates
 cd /volume1/docker
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose.yml
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose2.yml
-wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-updater.yml
+wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-updater.sh
 
 chmod +x docker-updater.sh
 
