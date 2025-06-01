@@ -14,17 +14,7 @@ cd /volume1/docker
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose.yml
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-compose2.yml
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/docker-updater.sh
-
 chmod +x docker-updater.sh
-
-cd /volume1/docker/Updates
-wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-homeassistant.sh
-wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-mosquitto.sh
-wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-zigbee2mqtt.sh
-wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-nodered.sh
-wget https://raw.githubusercontent.com/epulaecorp/NAS/Updates/update-visual-code.sh
-
-chmod +x update-*.sh
 
 cd /volume1/docker/mosquitto/config
 wget https://raw.githubusercontent.com/epulaecorp/NAS/main/mosquitto/mosquitto.conf
