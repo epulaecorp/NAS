@@ -7,7 +7,7 @@ set -o pipefail
 trap "echo -e '\n\e[31mActualizacion cancelada. Saliendo del script.\e[0m\n'; exit 1" INT
 
 # --- Variables de configuracion ---
-DOCKER_COMPOSE_FILE="docker-compose2.yml"
+DOCKER_COMPOSE_FILE="docker-compose.yml"
 MANUAL_SERVICES=("homeassistant" "mosquitto" "zigbee2mqtt" "watchtower" "nodered" "esphome" "codeserver")
 
 # --- Funcion para actualizar un servicio Docker Compose ---
