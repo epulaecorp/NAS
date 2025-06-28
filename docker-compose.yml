@@ -114,6 +114,24 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
+  music-assistant-server:
+    image: ghcr.io/music-assistant/server:latest
+    container_name: music-assistant-server
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /volume1/docker/music-assistant-server/data:/data
+    cap_add:
+      - SYS_ADMIN
+      - DAC_READ_SEARCH
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      - LOG_LEVEL=info
+      - TZ=America/Mexico_City
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower 
