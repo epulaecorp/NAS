@@ -14,22 +14,15 @@ services:
 
   esphome:
     container_name: esphome
-    image: esphome/esphome:latest
+    image: ghcr.io/esphome/esphome
     volumes:
       - /volume1/docker/esphome/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: always
-    # Eliminado privileged: true - Usar 'devices' en su lugar.
-    # Eliminado network_mode: host - Usar 'ports' en su lugar.
+    privileged: true
+    network_mode: host
     ports:
       - "6052:6052" # Interfaz web de ESPHome
-    devices:
-      # <<-- DEBES AJUSTAR ESTO A LA RUTA REAL DE TU DISPOSITIVO ESP -->>
-      - /dev/ttyUSB0:/dev/ttyUSB0 # Ejemplo: Ruta común para ESP32/ESP8266
-      # O también podrías necesitar:
-      # - /dev/ttyACM0:/dev/ttyACM0
-      # O usar la ruta por ID para mayor robustez:
-      # - /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0:/dev/ttyUSB0 
     environment:
       - USERNAME=admin
       - PASSWORD=Iz022394
