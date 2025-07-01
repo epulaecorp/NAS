@@ -6,14 +6,14 @@
 #
 # wget -q https://raw.githubusercontent.com/epulaecorp/NAS/refs/heads/main/start.sh
 # chmod +x start.sh
-# ./bootstrap.sh
+# ./start.sh
 # ============================================================================
 set -e
 
 # --- Configuración ---
 REPO_URL="https://raw.githubusercontent.com/epulaecorp/NAS/main"
 DEST_DIR="/volume1/docker"
-FILES="docker-compose.yml setup.sh update.sh"
+FILES="docker-compose.yml setup.sh updater.sh"
 
 # --- Funciones auxiliares ---
 log() { printf "\033[1;34m[INFO]\033[0m %s\n" "$1"; }
