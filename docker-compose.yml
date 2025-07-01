@@ -1,4 +1,5 @@
-version: '3'
+version: '3.8'
+
 services:
   homeassistant:
     container_name: homeassistant
@@ -7,10 +8,9 @@ services:
       - /volume1/docker/homeassistant:/config
       - /var/run/docker.sock:/var/run/docker.sock 
       - /etc/localtime:/etc/localtime:ro
-      - /run/dbus:/run/dbus:ro # Necesario para Bluetooth, etc.
-    restart: always
-    # Eliminado privileged: true - Riesgo de seguridad importante y rara vez necesario.
-    network_mode: host # Mantenido para la autodescubierta (mDNS/SSDP) de dispositivos en la red local.
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    network_mode: host
 
   esphome:
     container_name: esphome
@@ -18,12 +18,13 @@ services:
     volumes:
       - /volume1/docker/esphome/config:/config
       - /etc/localtime:/etc/localtime:ro
-    restart: always
-    privileged: true
+    restart: unless-stopped
+    # 'privileged: true' es necesario si quieres flashear dispositivos ESP por USB desde la NAS.
+    # Si solo compilas y descargas, o usas OTA, puedes eliminar la siguiente línea.
+    # privileged: true 
     network_mode: host
-    ports:
-      - "6052:6052" # Interfaz web de ESPHome
     environment:
+      # Puedes cambiar el usuario y la contraseña de la interfaz web de ESPHome aquí
       - USERNAME=admin
       - PASSWORD=Iz022394
     labels:
@@ -34,11 +35,9 @@ services:
     image: nodered/node-red:latest
     volumes:
       - /volume1/docker/nodered/data:/data
-    restart: always
-    # Eliminado privileged: true - No es necesario para Node-RED.
-    # Eliminado network_mode: host - Usar 'ports' en su lugar.
+    restart: unless-stopped
     ports:
-      - "1880:1880" # Interfaz web de Node-RED
+      - "1880:1880"
     environment:
       - TZ=America/Mexico_City
     labels:
@@ -48,61 +47,53 @@ services:
     container_name: mosquitto
     image: eclipse-mosquitto:latest
     volumes:
-      - /volume1/docker/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - /volume1/docker/mosquitto/config:/mosquitto/config # Opcional: Solo si necesitas que todo el directorio /mosquitto/config sea persistente, además del archivo .conf
+      # Asegúrate de que el archivo 'mosquitto.conf' exista en la carpeta del host antes de iniciar.
+      - /volume1/docker/mosquitto/config:/mosquitto/config
       - /volume1/docker/mosquitto/data:/mosquitto/data
       - /volume1/docker/mosquitto/log:/mosquitto/log
-    restart: always
-    # Eliminado privileged: true - No es necesario para Mosquitto.
-    # Eliminado network_mode: host - Usar 'ports' en su lugar.
+    restart: unless-stopped
     ports:
-      - "1883:1883" # Puerto MQTT estándar
-      - "9001:9001" # MQTT sobre WebSockets
+      - "1883:1883"
+      - "9001:9001"
     environment:
       - TZ=America/Mexico_City
-    # SIN ETIQUETA - No se actualizará automáticamente
 
   zigbee2mqtt:
     container_name: zigbee2mqtt
     image: koenkk/zigbee2mqtt
     volumes:
       - /volume1/docker/zigbee2mqtt/data:/app/data
-      - /run/udev:/run/udev:ro # Necesario para el descubrimiento de dispositivos USB
-    restart: always
-    # Eliminado privileged: true - Usar 'devices' en su lugar.
-    # Eliminado network_mode: host - Usar 'ports' en su lugar.
+      - /run/udev:/run/udev:ro
+    restart: unless-stopped
     ports:
-      - "8080:8080" # Interfaz web de Zigbee2MQTT
+      - "8080:8080"
     devices:
-      # <<-- DEBES AJUSTAR ESTO A LA RUTA REAL DE TU DONGLE ZIGBEE -->>
-      - /dev/ttyACM0:/dev/ttyACM0 # Ejemplo: Ruta común para Conbee/Zigate
-      # O para otros dongles:
-      # - /dev/ttyUSB0:/dev/ttyUSB0
-      # O usar la ruta por ID para mayor robustez:
-      # - /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_XXXXXXX-if00-port0:/dev/ttyUSB0
+      # ▼▼▼ ¡CRÍTICO! DEBES CAMBIAR ESTO POR LA RUTA REAL DE TU DONGLE ZIGBEE ▼▼▼
+      - /dev/ttyACM0:/dev/ttyACM0   # Descomenta y usa esta línea si tu dongle es ttyACM0
+      # - /dev/ttyUSB0:/dev/ttyUSB0   # Descomenta y usa esta línea si tu dongle es ttyUSB0
+      # Es muy probable que sea una de las dos de arriba.
     environment:
       - TZ=America/Mexico_City
-    # SIN ETIQUETA - No se actualizará automáticamente
 
   codeserver:
     image: linuxserver/code-server:latest
     container_name: codeserver
     volumes:
       - /volume1/docker/vcode:/config
+      # Estos mapeos te permiten editar tus archivos de Home Assistant y ESPHome desde Code-Server
       - /volume1/docker/homeassistant:/config/workspace/HomeAssistant
       - /volume1/docker/esphome:/config/workspace/ESPHome
-    restart: always
-    # Eliminado privileged: true - No es necesario para Code-Server.
-    # Eliminado network_mode: host - Usar 'ports' en su lugar.
+    restart: unless-stopped
     ports:
-      - "8443:8443" # Interfaz web de Code-Server (HTTPS por defecto)
+      - "8443:8443"
     environment:
-      - PUID=0 # Mantener 0 para ejecutar como root si los permisos de los volúmenes del host son root
-      - PGID=0 # Considera cambiar a un PUID/PGID de un usuario sin privilegios (ej. 1000) 
-               # y ajustar los permisos en las carpetas /volume1/docker/ para mayor seguridad.
+      # Se ejecuta como root para máxima compatibilidad en Synology sin configuración manual.
+      - PUID=0
+      - PGID=0
       - TZ=America/Mexico_City
+      # Contraseñas para la interfaz web de Code-Server
       - PASSWORD=Iz022394
-      - SUDO_PASSWORD=Pa$$w0rd
+      - SUDO_PASSWORD=Iz0222394
       - DEFAULT_WORKSPACE=/config/workspace
     labels:
       - com.centurylinklabs.watchtower.enable=true
@@ -130,11 +121,9 @@ services:
     container_name: watchtower 
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock
-    restart: always 
+    restart: unless-stopped
     environment: 
       - TZ=America/Mexico_City
       - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_SCHEDULE=0 0 5 * * 5
-      - WATCHTOWER_INCLUDE_RESTARTING=true
-      - WATCHTOWER_MONITOR_ONLY=false
+      - WATCHTOWER_SCHEDULE=0 0 5 * * 5 # Actualiza los viernes a las 5 AM
       - WATCHTOWER_LABEL_ENABLE=true
