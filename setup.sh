@@ -91,6 +91,29 @@ mkdir -p "${DOCKER_ROOT}/music-assistant-server/data"
 log_success "Estructura de directorios creada."
 
 # ============================================================================
+# Corrección de permisos para volúmenes utilizados por los contenedores
+# ============================================================================
+log_info "Corrigiendo permisos de volúmenes para contenedores..."
+APP_UID=1000
+APP_GID=1000
+for dir in \
+  "${DOCKER_ROOT}/homeassistant" \
+  "${DOCKER_ROOT}/esphome/config" \
+  "${DOCKER_ROOT}/nodered/data" \
+  "${DOCKER_ROOT}/mosquitto/config" \
+  "${DOCKER_ROOT}/mosquitto/data" \
+  "${DOCKER_ROOT}/mosquitto/log" \
+  "${DOCKER_ROOT}/vcode" \
+  "${DOCKER_ROOT}/zigbee2mqtt/data" \
+  "${DOCKER_ROOT}/music-assistant-server/data"
+do
+  log_info "Ajustando permisos en $dir"
+  chown -R "$APP_UID:$APP_GID" "$dir"
+  chmod -R 775 "$dir"
+done
+log_success "Permisos corregidos para todos los volúmenes."
+
+# ============================================================================
 # Descarga y actualización de archivos base
 # ============================================================================
 cd "${DOCKER_ROOT}"
