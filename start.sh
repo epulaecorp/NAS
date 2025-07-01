@@ -4,7 +4,7 @@
 # Autor: epulaecorp
 # Repositorio: https://github.com/epulaecorp/NAS
 #
-# wget -q https://raw.githubusercontent.com/epulaecorp/NAS/refs/heads/main/start.sh
+# wget -O https://raw.githubusercontent.com/epulaecorp/NAS/refs/heads/main/start.sh
 # chmod +x start.sh
 # ./start.sh
 # ============================================================================
