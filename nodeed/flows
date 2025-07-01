@@ -1,0 +1,3763 @@
+[
+    {
+        "id": "e5f68339573c09ac",
+        "type": "tab",
+        "label": "Fvicente_Room",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "81f4036b79b50426",
+        "type": "tab",
+        "label": "smart Charger",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "77a19ff2ac5ce62a",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "in": [],
+        "out": []
+    },
+    {
+        "id": "f785658a57b7af63",
+        "type": "subflow",
+        "name": "smartWindows FAN",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 585,
+                "y": 390,
+                "wires": [
+                    {
+                        "id": "get_all_states"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1260,
+                "y": 335,
+                "wires": [
+                    {
+                        "id": "call_service_ventilador",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1100,
+                "y": 450,
+                "wires": [
+                    {
+                        "id": "d773533e63d594bf",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "entity_fan",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-toggle-on",
+                    "label": {
+                        "en-US": "Target wfan entity"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "presence",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-male",
+                    "label": {
+                        "es-ES": "Precence_entity",
+                        "en-US": "Presence entity"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "temp_comfort",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-thermometer-half",
+                    "label": {
+                        "en-US": "Temp_comfort"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "temp_ext",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-thermometer-half",
+                    "label": {
+                        "en-US": "Temp_exterior"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "hum_ext",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-tint",
+                    "label": {
+                        "en-US": "Hum_exterior"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "temp_int",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-thermometer-1",
+                    "label": {
+                        "en-US": "Temp_interior"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "st_int",
+                "type": "str",
+                "value": "",
+                "ui": {
+                    "icon": "font-awesome/fa-thermometer-full",
+                    "label": {
+                        "en-US": "sensacionTermica_interior"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "delta_temp",
+                "type": "num",
+                "value": "2",
+                "ui": {
+                    "icon": "font-awesome/fa-angle-down",
+                    "label": {
+                        "en-US": "Diff_temperatura"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "num"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "hum_max_ext",
+                "type": "num",
+                "value": "75",
+                "ui": {
+                    "icon": "font-awesome/fa-tint",
+                    "label": {
+                        "en-US": "Hum_max_exterior"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "num"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "start_time",
+                "type": "str",
+                "value": "18:00:00",
+                "ui": {
+                    "icon": "font-awesome/fa-clock-o",
+                    "label": {
+                        "en-US": "Horario_inicio"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "end_time",
+                "type": "str",
+                "value": "05:00:00",
+                "ui": {
+                    "icon": "font-awesome/fa-clock-o",
+                    "label": {
+                        "en-US": "Horario_fin"
+                    },
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "area",
+                "type": "str",
+                "value": "fvicente_room",
+                "ui": {
+                    "icon": "font-awesome/fa-map-marker",
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "str"
+                        ]
+                    }
+                }
+            },
+            {
+                "name": "debug_mode",
+                "type": "bool",
+                "value": "false",
+                "ui": {
+                    "type": "input",
+                    "opts": {
+                        "types": [
+                            "bool"
+                        ]
+                    }
+                }
+            }
+        ],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "cb5cabb593da2e10",
+        "type": "group",
+        "z": "e5f68339573c09ac",
+        "name": "GOOD NIGHTS",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "f8032a077faf5c37",
+            "a9a56a0c186fbf0c",
+            "c70a9137d69f32d2",
+            "098f459d04e376ba",
+            "ce703e3501d7d2c3",
+            "5166197f7b9034a7",
+            "94408461b823d6b1",
+            "a0ed4f8d43e3ac94",
+            "d6a3522054d6499c",
+            "8b727d2aa437b21c",
+            "69eb5b662db6ef92",
+            "3028af659ad03351",
+            "800f58696ce1d193",
+            "bd1d0983dc90a9e8",
+            "a996329e39e14d99",
+            "f7d7c022d3ab5532",
+            "2725f968895457c6",
+            "9eca22e0125e467d",
+            "8d40023d174e2127",
+            "f0582c6638db4cce",
+            "8f0d971b9499fefb",
+            "8bb3f9e7d9905d31",
+            "c7ef2d84cc2c1b0b",
+            "733ddeb4b731ec01",
+            "75f22a141cf75a6d",
+            "c0c56f9d82f21a2e",
+            "ed63975a31985379",
+            "e783f5f8891730b1",
+            "93c022c4aabbc14f",
+            "fcb6315c1db5a8ca",
+            "99f404dd1dbcc15a",
+            "50d6e2f4d515bc51",
+            "589f5fe26df461fe",
+            "49b323b8a880bb84",
+            "c9af386d2d4d93f1",
+            "0baf2201d32b0d09",
+            "cc645718177591b8",
+            "5ccd43ebe8f9418b",
+            "2f90b7a21ed9bce3",
+            "d224a5eb53513b89",
+            "1caac1962da875b5",
+            "77be8b676261f0bb",
+            "af98fd0e68527d47",
+            "71753f60ceb8e351",
+            "3cb7ab476f78e78d",
+            "133cab8098a15aef",
+            "6957ae94ad63328f",
+            "7a573ee454f0f9ac"
+        ],
+        "x": 579,
+        "y": 284,
+        "w": 1382,
+        "h": 867
+    },
+    {
+        "id": "ae944552eb787ea7",
+        "type": "group",
+        "z": "e5f68339573c09ac",
+        "name": "Responses",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "c62ae89aa31b1f17",
+            "1046990f055e3c02",
+            "887767493dee2d78",
+            "380b9b7ed6699084",
+            "afdce950d684c63f",
+            "a279f08ffe348626"
+        ],
+        "x": 89,
+        "y": 569,
+        "w": 467,
+        "h": 212
+    },
+    {
+        "id": "68b3aeebe5d13932",
+        "type": "group",
+        "z": "81f4036b79b50426",
+        "name": "sensors Updates",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "d7dda84bdb06e803",
+            "eba5e914a9893e1a",
+            "d2b650b06d76d875",
+            "c083e9596910c25f",
+            "f024192b17a92e8d",
+            "b4c9a411ca801c12",
+            "890a0e378e74b438",
+            "9e1033f81db83d3a",
+            "1fc37e0f23830f8a",
+            "cab24698771ff894",
+            "0f0416e5e8057644",
+            "aae235f9557c95e3"
+        ],
+        "x": 359,
+        "y": 154,
+        "w": 522,
+        "h": 172
+    },
+    {
+        "id": "affa9a5edec2e57c",
+        "type": "group",
+        "z": "81f4036b79b50426",
+        "name": "parameters Inicialization",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "e1d7c6b3.a4f1f8",
+            "315cbf1e298c77b2"
+        ],
+        "x": 359,
+        "y": 49,
+        "w": 372,
+        "h": 82
+    },
+    {
+        "id": "2cd1d9f33aa8d5d6",
+        "type": "group",
+        "z": "81f4036b79b50426",
+        "name": "ON LOGIC",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "f9e8d7c6.b5a4b3",
+            "7751089147a9f0a8",
+            "4664acd40fe62783",
+            "4c349a73ca4cf6ab",
+            "cbddb682b4ad9d8f",
+            "ca818e66dd64b45c",
+            "a34b367a5dbb3695",
+            "d88e34a88f138593",
+            "e4d70aea90d70179",
+            "e1a782761a3fe8e6"
+        ],
+        "x": 104,
+        "y": 354,
+        "w": 832,
+        "h": 217
+    },
+    {
+        "id": "e97829c64f60f677",
+        "type": "group",
+        "z": "81f4036b79b50426",
+        "name": "OFF LOGIC",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "35fbe3b7ec2e7090",
+            "e7c09e5e7e9f760e",
+            "52cb0311c7476932",
+            "e2bb80151d398d58",
+            "b1530ef6960e7bdc"
+        ],
+        "x": 969,
+        "y": 354,
+        "w": 432,
+        "h": 172
+    },
+    {
+        "id": "b1e3fc690c31b4bf",
+        "type": "group",
+        "z": "81f4036b79b50426",
+        "name": "Triggers",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "b1b4a89ef5f4c052",
+            "668641b8e8c30576",
+            "8278eb89d6d0ec87",
+            "70114f4e48e6e336",
+            "f95b804e3cdb715c",
+            "9237ebdbf8c4aa84",
+            "632c599694500c5f",
+            "ee4ee05eb42c27e7"
+        ],
+        "x": 94,
+        "y": 109,
+        "w": 237,
+        "h": 217
+    },
+    {
+        "id": "55a4de9fdb400310",
+        "type": "group",
+        "z": "e5f68339573c09ac",
+        "name": "SET ALARM",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "get_preferred_alarm_time_sub",
+            "prepare_confirm_notification_text_sub",
+            "ask_fallback_confirmation_sub",
+            "process_fallback_confirm_response_fn_sub",
+            "calculate_alarm_date_time_pref_sub",
+            "update_flow_vars_alarm_set_sub",
+            "ask_for_custom_time_node_sub",
+            "process_custom_time_response_node_sub",
+            "speak_custom_alarm_set_node_sub",
+            "speak_custom_alarm_not_set_node_sub",
+            "update_flow_vars_no_alarm_sub",
+            "e048e855f1451d0e",
+            "f6c324d459bcea8e",
+            "ca53714ea1f9fd0a",
+            "ab0c9bafb8f02ff6",
+            "56caeb9f10e20944",
+            "c249a3fd652544d8",
+            "a377cbcaa7319c10",
+            "3dc87409d7457c92",
+            "734381d90ce1277c"
+        ],
+        "x": 1989,
+        "y": 504,
+        "w": 1642,
+        "h": 312
+    },
+    {
+        "id": "9adb9b6e33507840",
+        "type": "chronos-config",
+        "name": "Queretaro",
+        "latitudeType": "num",
+        "longitudeType": "num",
+        "timezone": "",
+        "timezoneType": "str",
+        "sunPositions": []
+    },
+    {
+        "id": "467dd17ee9816ac8",
+        "type": "global-config",
+        "name": "global-config",
+        "env": [
+            {
+                "name": "TZ",
+                "value": "America/Mexico_City",
+                "type": "str"
+            }
+        ]
+    },
+    {
+        "id": "19d43bb6f280b2ff",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 5,
+        "addon": false,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true,
+        "heartbeat": false,
+        "heartbeatInterval": 30,
+        "areaSelector": "friendlyName",
+        "deviceSelector": "friendlyName",
+        "entitySelector": "friendlyName",
+        "statusSeparator": ": ",
+        "statusYear": "hidden",
+        "statusMonth": "short",
+        "statusDay": "numeric",
+        "statusHourCycle": "default",
+        "statusTimeFormat": "h:m",
+        "enableGlobalContextStore": false
+    },
+    {
+        "id": "start_trigger_temp_ext",
+        "type": "server-state-changed",
+        "z": "f785658a57b7af63",
+        "name": "T Exterior ",
+        "server": "19d43bb6f280b2ff",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "{{temp_ext}}"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "stateType": "str",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "t_ext_changed",
+                "valueType": "str"
+            }
+        ],
+        "x": 545,
+        "y": 290,
+        "wires": [
+            [
+                "get_all_states"
+            ]
+        ]
+    },
+    {
+        "id": "start_trigger_st_int",
+        "type": "server-state-changed",
+        "z": "f785658a57b7af63",
+        "name": "ST Interior",
+        "server": "19d43bb6f280b2ff",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "{{st_int}}"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": false,
+        "ifState": "",
+        "ifStateType": "str",
+        "outputOnlyOnStateChange": true,
+        "for": "",
+        "forType": "num",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "st_int_changed",
+                "valueType": "str"
+            }
+        ],
+        "x": 545,
+        "y": 335,
+        "wires": [
+            [
+                "get_all_states"
+            ]
+        ]
+    },
+    {
+        "id": "get_all_states",
+        "type": "api-current-state",
+        "z": "f785658a57b7af63",
+        "name": "Get Sensors",
+        "server": "19d43bb6f280b2ff",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sun.sun",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "fan_state",
+                "propertyType": "msg",
+                "value": "$entities($env(\"entity_fan\")).state",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "presence_state",
+                "propertyType": "msg",
+                "value": "$entities($env(\"presence\")).state",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "comfort_temp_state",
+                "propertyType": "msg",
+                "value": "$entities($env(\"temp_comfort\")).state",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "ext_temp_state",
+                "propertyType": "msg",
+                "value": "$entities($env(\"temp_ext\")).state",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "ext_hum_state",
+                "propertyType": "msg",
+                "value": "$entities($env(\"hum_ext\")).state",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "int_temp_state",
+                "propertyType": "msg",
+                "value": "$entities($env(\"temp_int\")).state",
+                "valueType": "jsonata"
+            },
+            {
+                "property": "int_st_state",
+                "propertyType": "msg",
+                "value": "$entities($env(\"st_int\")).state",
+                "valueType": "jsonata"
+            }
+        ],
+        "for": "",
+        "forType": "num",
+        "x": 755,
+        "y": 335,
+        "wires": [
+            [
+                "d773533e63d594bf"
+            ]
+        ]
+    },
+    {
+        "id": "call_service_ventilador",
+        "type": "api-call-service",
+        "z": "f785658a57b7af63",
+        "name": "Ventilador ON/OFF",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "switch",
+        "service": "turn_{{payload}}",
+        "x": 1120,
+        "y": 335,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d773533e63d594bf",
+        "type": "function",
+        "z": "f785658a57b7af63",
+        "name": "CONTROL",
+        "func": "\n\n// ----- LEER VARIABLES DE ENTORNO DEL SUBFLUJO (Parámetros de Configuración) -----\nconst paramDeltaTemp = parseFloat(env.get(\"delta_temp\")) || 2;\nconst paramHumMaxExt = parseFloat(env.get(\"hum_max_ext\")) || 75;\nconst paramStartTimeStr = env.get(\"start_time\") || \"18:00:00\";\nconst paramEndTimeStr = env.get(\"end_time\") || \"05:00:00\";\nconst paramAreaNombre = env.get(\"area\") || \"Zona Desconocida\";\nconst paramDebugMode = env.get(\"debug_mode\") === true;\n\nconst entityFanSwitch = env.get(\"entity_fan\"); // Entity ID del ventilador desde las env vars\n\n// Parámetros de confort (hardcodeados aquí, pero podrían ser env vars)\nconst paramTempMaxExteriorConfort = 25; // °C - No encender si el exterior está por encima de esto.\nconst paramTempHysteresis = 0.5;    // °C - Para evitar ciclos rápidos de encendido/apagado.\n\n// ----- LEER VALORES DEL MSG (Provenientes del nodo api-current-state) -----\n// Asegúrate de que los nombres de msg.propiedad coincidan con las \"Output properties\"\n// de tu nodo api-current-state que precede a este function node.\nconst fanState = msg.fan_state; // ej. 'on' o 'off'\nconst presenceStateRaw = msg.presence_state;\nconst comfortTemp = parseFloat(msg.comfort_temp_state);\nconst extTemp = parseFloat(msg.ext_temp_state);\nconst extHum = parseFloat(msg.ext_hum_state);\nconst intTemp = parseFloat(msg.int_temp_state);\nconst intST = parseFloat(msg.int_st_state);\n\n// ----- 0. OBTENER EL DOMINIO DEL VENTILADOR ----- \nlet fanDomain = \"\";\n\nif (entityFanSwitch && typeof entityFanSwitch === 'string' && entityFanSwitch.includes('.')) {\n    fanDomain = entityFanSwitch.split('.')[0]; // Obtiene 'switch', 'fan', 'light', etc.\n} else {\n    if (paramDebugMode) {\n        node.warn(`[${paramAreaNombre}] Error: entity_fan ('${entityFanSwitch}') no es un ID de entidad válido. No se puede determinar el dominio.`);\n    }\n    // Si no podemos determinar el dominio o no hay entity_fan, no podemos continuar.\n    return null;\n}\n\n// ----- 1. VERIFICACIÓN DE PRESENCIA -----\nlet hasPresence = false;\nconst validPresenceStates = ['home', 'on', 'true', 'detected', 'ocupado']; // Ajusta según tus entidades\n\nif (presenceStateRaw && validPresenceStates.includes(presenceStateRaw.toLowerCase())) {\n    hasPresence = true;\n}\n\nif (!hasPresence) {\n    let statusMsg = `[${paramAreaNombre}] Sin Presencia (${presenceStateRaw}).`;\n    if (fanState === 'on') { // Si no hay presencia y el ventilador está encendido, apágalo.\n        statusMsg += \" Apagando ventilador.\";\n        node.status({ fill: \"grey\", shape: \"dot\", text: statusMsg });\n        if (paramDebugMode) {\n            node.warn(statusMsg);\n        }\n        return {\n            payload: {\n                action: fanDomain + '.turn_off', // ej: \"switch.turn_off\" o \"fan.turn_off\"\n                data: {\n                    entity_id: entityFanSwitch\n                }\n            }\n        }\n    } else { // Si no hay presencia y el ventilador ya está apagado, no hagas nada.\n        node.status({ fill: \"grey\", shape: \"dot\", text: statusMsg });\n        if (paramDebugMode) {\n            node.warn(statusMsg + \" Ventilador ya apagado.\");\n        }\n        return null; // No hacer nada más\n    }\n}\n// Si llegamos aquí, hay presencia.\n\n// ----- 2. CHEQUEO DE VALORES NUMÉRICOS INVÁLIDOS -----\nif (isNaN(extTemp) || isNaN(extHum) || isNaN(intTemp) || isNaN(intST) || isNaN(comfortTemp)) {\n    const errorData = {\n        extTemp_raw: msg.ext_temp_state,\n        extHum_raw: msg.ext_hum_state,\n        intTemp_raw: msg.int_temp_state,\n        intST_raw: msg.int_st_state,\n        comfortTemp_raw: msg.comfort_temp_state\n    };\n    node.status({ fill: \"red\", shape: \"ring\", text: `[${paramAreaNombre}] Error: Datos de sensor inválidos` });\n    if (paramDebugMode) {\n        node.warn(`[${paramAreaNombre}] Datos de sensor inválidos: ${JSON.stringify(errorData)}`);\n    }\n    return null; // No hacer nada si faltan datos clave o son inválidos\n}\n\n// ----- 3. LÓGICA DE HORARIO -----\nconst now = new Date();\nconst currentHour = now.getHours();\nconst currentMinutes = now.getMinutes();\nconst [startH, startM] = paramStartTimeStr.split(':').map(Number);\nconst [endH, endM] = paramEndTimeStr.split(':').map(Number);\n\nlet isInScheduledTime = false;\nconst currentTimeInMinutes = currentHour * 60 + currentMinutes;\nconst startTimeInMinutes = startH * 60 + startM;\nconst endTimeInMinutes = endH * 60 + endM;\n\nif (startTimeInMinutes <= endTimeInMinutes) { // Horario en el mismo día (ej. 07:00 - 21:00)\n    if (currentTimeInMinutes >= startTimeInMinutes && currentTimeInMinutes < endTimeInMinutes) {\n        isInScheduledTime = true;\n    }\n} else { // Horario que cruza la medianoche (ej. 21:00 - 07:00)\n    if (currentTimeInMinutes >= startTimeInMinutes || currentTimeInMinutes < endTimeInMinutes) {\n        isInScheduledTime = true;\n    }\n}\n\n// ----- 4. LÓGICA DE DECISIÓN (ENCENDER/APAGAR) -----\nlet decision = \"\";\nlet scheduleStatusSuffix = isInScheduledTime ? \"En horario.\" : \"Fuera de horario.\";\n\nif (!isInScheduledTime) { // Si está fuera de horario\n    if (fanState === 'on') { // Y el ventilador está encendido\n        decision = \"APAGAR\"; // Apágalo\n    }\n    // Si está fuera de horario y el ventilador está apagado, no se hace nada (decision queda \"\")\n} else { // Estamos en horario y hay presencia (verificado antes)\n    if (fanState === 'off') { // Si el ventilador está apagado, considera encenderlo\n        if (intST > comfortTemp && // Si la sensación térmica interior es mayor que el confort deseado\n            extTemp < (intTemp - paramDeltaTemp) && // Y el exterior es suficientemente más frío que el interior\n            extTemp < paramTempMaxExteriorConfort && // Y el exterior no está demasiado caliente en general\n            extHum < paramHumMaxExt) { // Y la humedad exterior es aceptable\n            decision = \"ENCENDER\";\n        }\n    } else { // fanState === 'on', el ventilador está encendido, considera apagarlo\n        if (intST <= comfortTemp || // Si se alcanzó el confort\n            extTemp >= (intTemp - paramDeltaTemp + paramTempHysteresis) || // O el exterior ya no es suficientemente más frío (considerando histéresis)\n            extHum >= paramHumMaxExt || // O la humedad exterior es demasiado alta\n            extTemp >= (paramTempMaxExteriorConfort + paramTempHysteresis)) { // O el exterior se calentó demasiado (considerando histéresis)\n            decision = \"APAGAR\";\n        }\n    }\n}\n\n// ----- 5. ACTUALIZAR STATUS Y LOGS DE DEBUG (SI HAY ACCIÓN) -----\nlet finalStatusText = `[${paramAreaNombre}] Pres:OK. ST:${intST}°C, T_ext:${extTemp}°C, H_ext:${extHum}%. ${scheduleStatusSuffix} Dec: ${decision || 'NADA'}`;\nnode.status({ text: finalStatusText });\n\nif (paramDebugMode && (decision === \"ENCENDER\" || decision === \"APAGAR\")) {\n    node.warn({\n        zona: paramAreaNombre,\n        accion_tomada: decision,\n        presence_estado_raw: presenceStateRaw,\n        st_int: intST,\n        temp_comfort: comfortTemp,\n        t_ext: extTemp,\n        t_int: intTemp,\n        h_ext: extHum,\n        en_horario: isInScheduledTime,\n        ventilador_antes: fanState,\n        status_final_evaluacion: finalStatusText\n    });\n} else if (paramDebugMode && decision === \"\") {\n    // Log opcional si no se tomó acción pero se evaluó todo\n    node.warn({\n        zona: paramAreaNombre,\n        accion_tomada: \"NO ACTION (condiciones no cumplidas)\",\n        presence_estado_raw: presenceStateRaw,\n        st_int: intST,\n        temp_comfort: comfortTemp,\n        t_ext: extTemp,\n        t_int: intTemp,\n        h_ext: extHum,\n        en_horario: isInScheduledTime,\n        ventilador_antes: fanState,\n        status_final_evaluacion: finalStatusText\n    });\n}\n\n\n// ----- 6. PREPARAR MENSAJE DE SALIDA (SI HAY ACCIÓN) -----\n\n// Preparamos el msg.payload que anulará la configuración del nodo call-service\nlet serviceToCall = \"\";\nif (decision === \"ENCENDER\") {\n    serviceToCall = fanDomain + '.turn_on';\n} else if (decision === \"APAGAR\") {\n    serviceToCall = fanDomain + '.turn_off';\n}\n\nif (serviceToCall) {\n    msg.payload = {\n        action: serviceToCall, // Propiedad 'action' para anular el nodo\n        data: {\n            entity_id: entityFanSwitch // Pasamos el entity_id dentro de data\n        }\n    };\n    if (paramDebugMode) {\n        node.warn(`[${paramAreaNombre}] Preparando para llamar servicio: ${JSON.stringify(msg.payload)}`);\n    }\n    return msg; // Devolvemos el msg completo. El nodo call-service usará msg.payload\n} else {\n    return null; // No enviar ningún mensaje si no hay acción que tomar\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 925,
+        "y": 335,
+        "wires": [
+            [
+                "call_service_ventilador"
+            ]
+        ]
+    },
+    {
+        "id": "1046990f055e3c02",
+        "type": "switch",
+        "z": "e5f68339573c09ac",
+        "g": "ae944552eb787ea7",
+        "name": "Topic",
+        "property": "payload.event.event_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Sleep",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Delay",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Gym",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Office",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 390,
+        "y": 675,
+        "wires": [
+            [
+                "a279f08ffe348626"
+            ],
+            [
+                "afdce950d684c63f"
+            ],
+            [
+                "380b9b7ed6699084"
+            ],
+            [
+                "887767493dee2d78"
+            ]
+        ],
+        "outputLabels": [
+            "Backlight",
+            "Delay",
+            "Alarm",
+            "Office"
+        ]
+    },
+    {
+        "id": "887767493dee2d78",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "ae944552eb787ea7",
+        "name": "Office",
+        "mode": "link",
+        "links": [
+            "5166197f7b9034a7"
+        ],
+        "x": 515,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "5166197f7b9034a7",
+        "type": "link in",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Office",
+        "links": [
+            "887767493dee2d78"
+        ],
+        "x": 655,
+        "y": 1040,
+        "wires": [
+            [
+                "c0c56f9d82f21a2e"
+            ]
+        ]
+    },
+    {
+        "id": "380b9b7ed6699084",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "ae944552eb787ea7",
+        "name": "Gym",
+        "mode": "link",
+        "links": [
+            "94408461b823d6b1"
+        ],
+        "x": 515,
+        "y": 695,
+        "wires": []
+    },
+    {
+        "id": "94408461b823d6b1",
+        "type": "link in",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Gym",
+        "links": [
+            "380b9b7ed6699084"
+        ],
+        "x": 655,
+        "y": 835,
+        "wires": [
+            [
+                "75f22a141cf75a6d"
+            ]
+        ]
+    },
+    {
+        "id": "afdce950d684c63f",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "ae944552eb787ea7",
+        "name": "Delay",
+        "mode": "link",
+        "links": [
+            "a0ed4f8d43e3ac94"
+        ],
+        "x": 515,
+        "y": 650,
+        "wires": []
+    },
+    {
+        "id": "a279f08ffe348626",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "ae944552eb787ea7",
+        "name": "Sleep",
+        "mode": "link",
+        "links": [
+            "d6a3522054d6499c"
+        ],
+        "x": 515,
+        "y": 610,
+        "wires": []
+    },
+    {
+        "id": "a0ed4f8d43e3ac94",
+        "type": "link in",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Delay",
+        "links": [
+            "afdce950d684c63f"
+        ],
+        "x": 655,
+        "y": 655,
+        "wires": [
+            [
+                "733ddeb4b731ec01"
+            ]
+        ]
+    },
+    {
+        "id": "d6a3522054d6499c",
+        "type": "link in",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Sleep",
+        "links": [
+            "a279f08ffe348626"
+        ],
+        "x": 650,
+        "y": 485,
+        "wires": [
+            [
+                "c7ef2d84cc2c1b0b"
+            ]
+        ]
+    },
+    {
+        "id": "f8032a077faf5c37",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Sleep Flow",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.alexa_actionable_notification",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"text\":\"Ya es tarde. Deberías dormir. ¿Apago todo? \",\"event_id\":\"Sleep\",\"alexa_device\":\"media_player.echo_recamara\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "attempts_sleep_count",
+                "propertyType": "flow",
+                "value": "0",
+                "valueType": "num"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "alexa_actionable_notification",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1545,
+        "y": 325,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "a9a56a0c186fbf0c",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Delay Flow",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.alexa_actionable_notification",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"text\":\"¿Cuánto tiempo más?\",\"event_id\":\"Delay\",\"alexa_device\":\"media_player.echo_recamara\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "attempts_delay_count",
+                "propertyType": "flow",
+                "value": "0",
+                "valueType": "num"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "alexa_actionable_notification",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 990,
+        "y": 460,
+        "wires": [
+            [
+                "9eca22e0125e467d"
+            ]
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "c70a9137d69f32d2",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Sleep Flow",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.alexa_actionable_notification",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"text\":\"Ya pasó el tiempo. ¿Ya vamos a dormir? \",\"event_id\":\"Sleep\",\"alexa_device\":\"media_player.echo_recamara\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "attempts_sleep_count",
+                "propertyType": "flow",
+                "value": "0",
+                "valueType": "num"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "alexa_actionable_notification",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1865,
+        "y": 610,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "098f459d04e376ba",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "GYM Flow",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.alexa_actionable_notification",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"text\":\"¿Mañana vamos al gym?\",\"event_id\":\"Gym\",\"alexa_device\":\"media_player.echo_recamara\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "attempts_gym_count",
+                "propertyType": "flow",
+                "value": "0",
+                "valueType": "num"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "alexa_actionable_notification",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 990,
+        "y": 420,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "ce703e3501d7d2c3",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Office Flow",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.alexa_actionable_notification",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"text\":\"¿Mañana irás a la oficina?\",\"event_id\":\"Office\",\"alexa_device\":\"media_player.echo_recamara\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [
+            {
+                "property": "attempts_office_count",
+                "propertyType": "flow",
+                "value": "0",
+                "valueType": "num"
+            }
+        ],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "alexa_actionable_notification",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 990,
+        "y": 815,
+        "wires": [
+            []
+        ],
+        "icon": "node-red-contrib-alexa-remote2-mattl0/alexa-remote-icon.png"
+    },
+    {
+        "id": "8b727d2aa437b21c",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Vol -",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.volume_set",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.echo_recamara"
+        ],
+        "labelId": [],
+        "data": "{\t    \"volume_level\": 0.4\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "media_player",
+        "service": "volume_set",
+        "x": 1270,
+        "y": 325,
+        "wires": [
+            [
+                "3028af659ad03351"
+            ]
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "69eb5b662db6ef92",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Vol -",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.volume_set",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.echo_recamara"
+        ],
+        "labelId": [],
+        "data": "{\t    \"volume_level\": 0.4\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "media_player",
+        "service": "volume_set",
+        "x": 1595,
+        "y": 610,
+        "wires": [
+            [
+                "f7d7c022d3ab5532"
+            ]
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "3028af659ad03351",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Pause",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.media_pause",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.fvicente_tv"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "media_player",
+        "service": "media_pause",
+        "x": 1400,
+        "y": 325,
+        "wires": [
+            [
+                "f8032a077faf5c37"
+            ]
+        ],
+        "icon": "font-awesome/fa-television"
+    },
+    {
+        "id": "800f58696ce1d193",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Play",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.media_play",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.fvicente_tv"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "media_player",
+        "service": "media_play",
+        "x": 1095,
+        "y": 610,
+        "wires": [
+            [
+                "f0582c6638db4cce"
+            ]
+        ],
+        "icon": "font-awesome/fa-tv"
+    },
+    {
+        "id": "c62ae89aa31b1f17",
+        "type": "server-events",
+        "z": "e5f68339573c09ac",
+        "g": "ae944552eb787ea7",
+        "name": "Notification Response",
+        "server": "19d43bb6f280b2ff",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "eventType": "alexa_actionable_notification",
+        "eventData": "",
+        "waitForRunning": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            }
+        ],
+        "x": 215,
+        "y": 675,
+        "wires": [
+            [
+                "1046990f055e3c02"
+            ]
+        ],
+        "icon": "node-red-contrib-alexa-remote2-mattl0/alexa-remote-icon.png"
+    },
+    {
+        "id": "bd1d0983dc90a9e8",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "snapshot",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "scene.create",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\t    \"scene_id\":\"alexa_state\",\t    \"snapshot_entities\":\"media_player.echo_recamara\"\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "scene",
+        "service": "create",
+        "x": 1130,
+        "y": 325,
+        "wires": [
+            [
+                "8b727d2aa437b21c"
+            ]
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "a996329e39e14d99",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Vol +",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "scene.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.alexa_state"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "scene",
+        "service": "turn_on",
+        "x": 970,
+        "y": 610,
+        "wires": [
+            [
+                "800f58696ce1d193"
+            ]
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "f7d7c022d3ab5532",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Pause",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "media_player.media_pause",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "media_player.fvicente_tv"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "media_player",
+        "service": "media_pause",
+        "x": 1720,
+        "y": 610,
+        "wires": [
+            [
+                "c70a9137d69f32d2"
+            ]
+        ],
+        "icon": "font-awesome/fa-television"
+    },
+    {
+        "id": "8bcf64cbf6da51b5",
+        "type": "server-state-changed",
+        "z": "e5f68339573c09ac",
+        "name": "Tv OFF",
+        "server": "19d43bb6f280b2ff",
+        "version": 6,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "remote.fvicente_tv"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "str",
+        "ifState": "off",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": "3",
+        "forType": "num",
+        "forUnits": "seconds",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 700,
+        "y": 205,
+        "wires": [
+            [
+                "fb8f0e5169967e8a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fb8f0e5169967e8a",
+        "type": "chronos-switch",
+        "z": "e5f68339573c09ac",
+        "name": "21:00 - 4:00",
+        "config": "9adb9b6e33507840",
+        "baseTime": "",
+        "baseTimeType": "msgIngress",
+        "conditions": [
+            {
+                "operator": "between",
+                "label": "between 21:00 and 4:00",
+                "operands": [
+                    {
+                        "type": "time",
+                        "value": "21:00",
+                        "offset": 0,
+                        "random": 0,
+                        "precision": "millisecond"
+                    },
+                    {
+                        "type": "time",
+                        "value": "4:00",
+                        "offset": 0,
+                        "random": 0,
+                        "precision": "millisecond"
+                    }
+                ]
+            }
+        ],
+        "stopOnFirstMatch": false,
+        "outputs": 1,
+        "x": 845,
+        "y": 205,
+        "wires": [
+            [
+                "b899de3e2be54b56"
+            ]
+        ],
+        "icon": "font-awesome/fa-clock-o"
+    },
+    {
+        "id": "9aaa3abeac8de03e",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "name": "Sleep Flow",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.alexa_actionable_notification",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"text\":\"¿Ya vamos a dormir?\",\"event_id\":\"Sleep\",\"alexa_device\":\"media_player.echo_recamara\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "alexa_actionable_notification",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1285,
+        "y": 205,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "b899de3e2be54b56",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "name": "Alarm?",
+        "func": "if (flow.get('alarmEnabled') === true) {\n    node.status({fill:\"yellow\", shape:\"dot\", text:\"Alarma ya activa\"});\n    return null;\n}\nnode.status({fill:\"green\", shape:\"dot\", text:\"Alarma no activa, procede\"});\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 995,
+        "y": 205,
+        "wires": [
+            [
+                "3abec8e30afe5f3b"
+            ]
+        ],
+        "icon": "node-red/timer.svg"
+    },
+    {
+        "id": "2725f968895457c6",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Alarm?",
+        "func": "if (flow.get('alarmEnabled') === true) {\n    node.status({ fill: \"yellow\", shape: \"dot\", text: \"yes\" });\n    return null;\n}\nnode.status({ fill: \"green\", shape: \"dot\", text: \"no\" });\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 855,
+        "y": 325,
+        "wires": [
+            [
+                "8bb3f9e7d9905d31"
+            ]
+        ],
+        "icon": "node-red/timer.svg"
+    },
+    {
+        "id": "9eca22e0125e467d",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Lights ",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "light.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "light.fvicente"
+        ],
+        "labelId": [],
+        "data": "{\"brightness_pct\":25,\"transition\":3}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "light",
+        "service": "turn_on",
+        "x": 1135,
+        "y": 460,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-toggle-off"
+    },
+    {
+        "id": "8d40023d174e2127",
+        "type": "delay",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Wait",
+        "pauseType": "delayv",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1345,
+        "y": 610,
+        "wires": [
+            [
+                "8f0d971b9499fefb"
+            ]
+        ]
+    },
+    {
+        "id": "f0582c6638db4cce",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "lock?",
+        "func": "let isDelayActive = flow.get(\"locked\") || false;\n\nif (isDelayActive) {\n    node.status({fill:\"red\",shape:\"dot\",text:\"locked\"});\n    return null; // No enviar mensaje, detener el flujo aquí\n} else {\n    flow.set(\"locked\", true);\n    node.status({ fill: \"blue\", shape: \"dot\", text:\"unlocked\"});\n    return msg; // Permitir que el mensaje continúe\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1220,
+        "y": 610,
+        "wires": [
+            [
+                "8d40023d174e2127"
+            ]
+        ]
+    },
+    {
+        "id": "8f0d971b9499fefb",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "unlock",
+        "func": "flow.set(\"locked\", false);\nnode.status({fill:\"green\",shape:\"dot\",text:\"unlock\"});\nreturn msg; // Pasar el mensaje a la salida final",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1470,
+        "y": 610,
+        "wires": [
+            [
+                "69eb5b662db6ef92"
+            ]
+        ]
+    },
+    {
+        "id": "8bb3f9e7d9905d31",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "lock?",
+        "func": "let isDelayActive = flow.get(\"locked\") || false;\n\nif (isDelayActive) {\n    node.status({fill:\"red\",shape:\"dot\",text:\"locked\"});\n    return null; // No enviar mensaje, detener el flujo aquí\n} else {\n    node.status({fill:\"blue\",shape:\"dot\",text:\"unlocked\"});\n    return msg; // Permitir que el mensaje continúe\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 325,
+        "wires": [
+            [
+                "bd1d0983dc90a9e8"
+            ]
+        ]
+    },
+    {
+        "id": "3abec8e30afe5f3b",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "name": "lock?",
+        "func": "let isDelayActive = flow.get(\"locked\") || false;\n\nif (isDelayActive) {\n    node.status({fill:\"red\",shape:\"dot\",text:\"locked\"});\n    return null; // No enviar mensaje, detener el flujo aquí\n} else {\n    node.status({fill:\"blue\",shape:\"dot\",text:\"unlocked\"});\n    return msg; // Permitir que el mensaje continúe\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1135,
+        "y": 205,
+        "wires": [
+            [
+                "9aaa3abeac8de03e"
+            ]
+        ]
+    },
+    {
+        "id": "d2579bdbc4de566e",
+        "type": "inject",
+        "z": "e5f68339573c09ac",
+        "name": "ini",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ini",
+        "payloadType": "str",
+        "x": 720,
+        "y": 150,
+        "wires": [
+            [
+                "8ec8bb07245ea685"
+            ]
+        ]
+    },
+    {
+        "id": "8ec8bb07245ea685",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "name": "initialize",
+        "func": "flow.set(\"locked\", false);\nflow.set(\"alarmEnabled\", false);\n\nflow.set(\"attempts_sleep_count\", 0);\nflow.set(\"attempts_delay_count\", 0);\nflow.set(\"attempts_gym_count\", 0);\nflow.set(\"attempts_office_count\", 0);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 150,
+        "wires": [
+            [
+                "e4807c8a583026bd"
+            ]
+        ]
+    },
+    {
+        "id": "c7ef2d84cc2c1b0b",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Handle Sleep",
+        "func": "// Nodo: Handle Sleep Response\n// SALIDAS:\n// 1: ResponseYes\n// 2: ResponseNo\n// 3: ResponseNone\n// 4: Invalid Response\n\nconst response = msg.payload?.event?.event_response;\n// Inicializar array de mensajes de salida para 4 puertos\nlet outputs = [null, null, null, null];\n\nnode.status({}); // Limpiar estado anterior del nodo\n\nif (response === \"ResponseYes\") {\n    node.status({fill:\"green\", shape:\"dot\", text:\"Respuesta: SÍ (Dormir)\"});\n    outputs[0] = msg; // Enviar a la acción de \"Sí\" (Preguntar Gym)\n} else if (response === \"ResponseNo\") {\n    node.status({fill:\"red\", shape:\"dot\", text:\"Respuesta: NO (Dormir)\"});\n    outputs[1] = msg; // Enviar a la acción de \"No\" (Preguntar Delay)\n} else if (response === \"ResponseNone\") {\n    node.status({fill:\"blue\", shape:\"dot\", text:\"Respuesta: NINGUNA (Dormir)\"});\n    msg.attempt_context = \"sleep\";\n    outputs[2] = msg; // Enviar a la lógica de \"attempts\" (que ya maneja no respuesta)\n} else {\n    // Respuesta no reconocida o inesperada\n    node.status({fill:\"yellow\", shape:\"ring\", text:`Respuesta inválida: '${response}'`});\n    node.warn(`Respuesta inválida para 'Sleep': '${response}'.`);\n    // Guardar la respuesta inválida en el msg si quieres usarla en la notificación de error\n    msg.invalid_context = \"sleep\";\n    outputs[3] = msg; // Enviar a la nueva rama de \"Respuesta Inválida\"\n}\n\nreturn outputs;",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 485,
+        "wires": [
+            [
+                "098f459d04e376ba"
+            ],
+            [
+                "a9a56a0c186fbf0c"
+            ],
+            [
+                "589f5fe26df461fe"
+            ],
+            [
+                "133cab8098a15aef"
+            ]
+        ]
+    },
+    {
+        "id": "733ddeb4b731ec01",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Handle Delay",
+        "func": "// Nodo: Handle Delay Response\n// SALIDA 1 (Principal): msg.{delay}\n// SALIDA 2 (Principal): msg.{attempt_context}\n// SALIDA 3 (Principal): msg.{invalid_context}\n\n// --- INICIO: Configuración de Depuración ---\nconst enableDebug = false; // CAMBIAR A true PARA ACTIVAR LOS node.warn DE DEBUG\n// --- FIN: Configuración de Depuración ---\n\nconst rawResponse = msg.payload?.event?.event_response;\nconst originalMsgId = msg._msgid; // Para rastrear el msg original en el debug si está activo\n\nlet outputs = [null, null, null];\nlet newMsgObject = {};\n\nnode.status({}); // Limpiar estado anterior del nodo\n\nif (rawResponse === \"ResponseNone\") {\n    node.status({ fill: \"blue\", shape: \"dot\", text: \"Respuesta: NINGUNA\" });\n\n    if (enableDebug) {\n        node.warn({\n            info_type: \"HandleDelayDebug\",\n            timestamp: new Date().toISOString(),\n            original_msg_id: originalMsgId,\n            action: \"Handle Delay Node\",\n            raw_response_received: rawResponse,\n            decision: \"ResponseNone - No hubo respuesta del usuario.\",\n            output_message_content: { attempt_context: \"delay\" }\n        });\n    }\n\n    newMsgObject.attempt_context = \"delay\";\n    outputs[1] = newMsgObject;\n} else {\n    let delayInSeconds = Number(rawResponse);\n\n    if (!isNaN(delayInSeconds) && delayInSeconds > 0) {\n        // --- INICIO: Modificación para el status visual ---\n        let statusText = \"\";\n        if (delayInSeconds < 60) {\n            statusText = `Delay: ${delayInSeconds} seg`;\n        } else {\n            const minutes = Math.floor(delayInSeconds / 60);\n            const seconds = delayInSeconds % 60;\n            if (seconds === 0) {\n                statusText = `Delay: ${minutes} min`;\n            } else {\n                statusText = `Delay: ${minutes} min ${seconds} seg`;\n            }\n        }\n        node.status({ fill: \"green\", shape: \"dot\", text: statusText });\n        // --- FIN: Modificación para el status visual ---\n\n        if (enableDebug) {\n            node.warn({\n                info_type: \"HandleDelayDebug\",\n                timestamp: new Date().toISOString(),\n                original_msg_id: originalMsgId,\n                action: \"Handle Delay Node\",\n                raw_response_received: rawResponse,\n                decision: `Delay Válido: ${delayInSeconds} segundos.`,\n                output_message_content: { delay: delayInSeconds * 1000, delay_for_user: `${statusText.replace(\"Delay: \", \"\")}` } // Usamos el texto formateado para debug\n            });\n        }\n\n        newMsgObject.delay = delayInSeconds * 1000; // El valor real sigue siendo en milisegundos\n        outputs[0] = newMsgObject;\n    } else {\n        node.status({ fill: \"yellow\", shape: \"ring\", text: `Respuesta inválida para Delay: '${rawResponse}'` });\n        node.warn(`Respuesta inválida/no numérica para 'Delay': '${rawResponse}'. (Este es el warn original)`);\n\n        if (enableDebug) {\n            node.warn({\n                info_type: \"HandleDelayDebug - InvalidResponse\",\n                timestamp: new Date().toISOString(),\n                original_msg_id: originalMsgId,\n                action: \"Handle Delay Node\",\n                raw_response_received: rawResponse,\n                decision: `Respuesta Inválida: '${rawResponse}'.`,\n                output_message_content: { invalid_context: \"delay\" }\n            });\n        }\n\n        newMsgObject.invalid_context = \"delay\";\n        outputs[2] = newMsgObject;\n    }\n}\n\nreturn outputs;",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 775,
+        "y": 655,
+        "wires": [
+            [
+                "a996329e39e14d99"
+            ],
+            [
+                "c9af386d2d4d93f1"
+            ],
+            [
+                "3cb7ab476f78e78d"
+            ]
+        ]
+    },
+    {
+        "id": "75f22a141cf75a6d",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Handle Gym",
+        "func": "// Nodo: Handle Gym Response\n// Conectado después del link-in \"Gym\" (94408461b823d6b1)\n// Reemplaza al switch \"Y / - / N\" (a1d2ba8ebb2a81cc)\n// SALIDAS:\n// 1: ResponseYes\n// 2: ResponseNo\n// 3: ResponseNone\n// 4: Invalid Response\n\nconst response = msg.payload?.event?.event_response;\nlet outputs = [null, null, null, null]; // Ahora 4 salidas\n\nnode.status({});\n\nif (response === \"ResponseYes\") {\n    node.status({ fill: \"green\", shape: \"dot\", text: \"Respuesta: SÍ (Gym)\" });\n    msg.source = \"gym\";\n    outputs[0] = msg;\n} else if (response === \"ResponseNo\") {\n    node.status({ fill: \"red\", shape: \"dot\", text: \"Respuesta: NO (Gym)\" });\n    outputs[1] = msg;\n} else if (response === \"ResponseNone\") { // <<-- NUEVA LÓGICA PARA ResponseNone\n    node.status({ fill: \"blue\", shape: \"dot\", text: \"Respuesta: NINGUNA (Gym)\" });\n    msg.attempt_context = \"gym\";\n    outputs[2] = msg; // Enviar a la cuarta salida (para attempts_gym)\n} else { // Invalid Response (no es Yes, No, ni None)\n    node.status({ fill: \"yellow\", shape: \"ring\", text: `Respuesta inválida: '${response}'` });\n    node.warn(`Respuesta inválida para 'Gym': '${response}'.`);\n    msg.invalid_context = \"gym\";\n    outputs[3] = msg;\n}\n\nreturn outputs;",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 835,
+        "wires": [
+            [
+                "99f404dd1dbcc15a"
+            ],
+            [
+                "ce703e3501d7d2c3"
+            ],
+            [
+                "49b323b8a880bb84"
+            ],
+            [
+                "af98fd0e68527d47"
+            ]
+        ]
+    },
+    {
+        "id": "c0c56f9d82f21a2e",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Handle Office",
+        "func": "// Nodo: Handle Office\n// SALIDAS:\n// 1: ResponseYes \n// 2: ResponseNo \n// 3: ResponseNone \n// 4: Invalid Response \n\nconst response = msg.payload?.event?.event_response;\n// Inicializar array de mensajes de salida para 4 puertos\nlet outputs = [null, null, null, null];\n\nnode.status({}); // Limpiar estado anterior del nodo\n\nif (response === \"ResponseYes\") {\n    node.status({fill:\"green\", shape:\"dot\", text:\"Respuesta: SÍ (Gym)\"});\n    msg.source = \"office\";\n    outputs[0] = msg;\n} else if (response === \"ResponseNo\") {\n    node.status({fill:\"red\", shape:\"dot\", text:\"Respuesta: NO (Gym)\"});\n    outputs[1] = msg; // Enviar a la pregunta de la Oficina\n} else if (response === \"ResponseNone\") {\n    node.status({fill:\"blue\", shape:\"dot\", text:\"Respuesta: NINGUNA (Gym)\"});\n    msg.sorce = \"office_silent\";\n    msg.attempt_context = \"office\";\n    outputs[2] = msg; // Salida para \"No hubo respuesta\"\n} else {\n    // Respuesta no reconocida o inesperada\n    node.status({fill:\"yellow\", shape:\"ring\", text:`Respuesta inválida: '${response}'`});\n    node.warn(`Respuesta inválida para 'Gym': '${response}'.`);\n    msg.invalid_context = \"office\";\n    outputs[3] = msg; // Enviar a la nueva rama de \"Respuesta Inválida para Gym\"\n}\n\nreturn outputs;",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 775,
+        "y": 1040,
+        "wires": [
+            [
+                "50d6e2f4d515bc51"
+            ],
+            [
+                "6957ae94ad63328f"
+            ],
+            [
+                "0baf2201d32b0d09"
+            ],
+            [
+                "71753f60ceb8e351"
+            ]
+        ]
+    },
+    {
+        "id": "ed63975a31985379",
+        "type": "comment",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Y / N  / - / ?",
+        "info": "",
+        "x": 800,
+        "y": 970,
+        "wires": []
+    },
+    {
+        "id": "e783f5f8891730b1",
+        "type": "comment",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Y / N / - / ?",
+        "info": "",
+        "x": 740,
+        "y": 785,
+        "wires": []
+    },
+    {
+        "id": "93c022c4aabbc14f",
+        "type": "comment",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "# / - / ?",
+        "info": "",
+        "x": 805,
+        "y": 610,
+        "wires": []
+    },
+    {
+        "id": "fcb6315c1db5a8ca",
+        "type": "comment",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Y / N / - / ?",
+        "info": "",
+        "x": 790,
+        "y": 430,
+        "wires": []
+    },
+    {
+        "id": "get_preferred_alarm_time_sub",
+        "type": "api-current-state",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "gerPersonalAlarma",
+        "server": "19d43bb6f280b2ff",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "input_datetime.fvicente_alarm",
+        "state_type": "str",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "preferred_alarm_attributes",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "",
+        "override_payload": "none",
+        "entity_location": "",
+        "override_data": "none",
+        "x": 2270,
+        "y": 575,
+        "wires": [
+            [
+                "prepare_confirm_notification_text_sub"
+            ]
+        ]
+    },
+    {
+        "id": "prepare_confirm_notification_text_sub",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "formatPersonalAlarm",
+        "func": "const source = msg.source;\n\nlet hours_pref, minutes_pref, seconds_pref;\nlet preferred_time_readable_personal = \"la hora habitual\";\nlet final_time_to_set;\nlet alexa_text_to_speak = \"\";\nlet needs_interaction = false; \n\n// Siempre obtener la hora de la preferencia personal (input_datetime.fvicente_alarm)\nif (msg.preferred_alarm_attributes && msg.preferred_alarm_attributes.attributes) {\n    hours_pref = msg.preferred_alarm_attributes.attributes.hour;\n    minutes_pref = msg.preferred_alarm_attributes.attributes.minute;\n    seconds_pref = msg.preferred_alarm_attributes.attributes.second || 0;\n    if (typeof hours_pref !== 'undefined' && typeof minutes_pref !== 'undefined') {\n        preferred_time_readable_personal = `las ${String(hours_pref).padStart(2, '0')}:${String(minutes_pref).padStart(2, '0')}`;\n    }\n}\n\n// Función auxiliar para obtener hora personal o fallback\nfunction getPersonalOrDefaultTime() {\n    if (typeof hours_pref !== 'undefined' && typeof minutes_pref !== 'undefined') {\n        return `${String(hours_pref).padStart(2,'0')}:${String(minutes_pref).padStart(2,'0')}:${String(seconds_pref).padStart(2,'0')}`;\n    } else {\n        node.warn(`No se pudo leer input_datetime.fvicente_alarm. Usando 05:00:00 como fallback para ${source || 'default'}.`);\n        return \"05:00:00\";\n    }\n}\n\nswitch (source) {\n    case \"sleep_silent\":\n    case \"delay_silent\":\n        final_time_to_set = getPersonalOrDefaultTime();\n        node.log(`SILENT (${source}): Alarma a ${final_time_to_set}`);\n        needs_interaction = false;\n        break;\n\n    case \"gym\":\n    case \"gym_silent\":\n        const now_gym = new Date();\n        const currentDay_gym = now_gym.getDay();\n        if (currentDay_gym >= 0 && currentDay_gym <= 4) { \n            final_time_to_set = \"05:00:00\"; \n        }else {\n             final_time_to_set = \"07:00:00\"; \n        }\n        node.log(`SILENT (gym_silent): Alarma a ${final_time_to_set}`);\n        needs_interaction = false;\n        break;\n\n    case \"office_silent\":\n        final_time_to_set = \"06:00:00\"; // Ejemplo\n        node.log(`SILENT (office_silent): Alarma a ${final_time_to_set}`);\n        needs_interaction = false;\n        break;\n\n    case \"office\": \n        final_time_to_set = \"07:00:00\";\n        alexa_text_to_speak = `Normalmente para ir a la oficna te levantaas a las 07:00. ¿Está bien?`;\n        node.log(`INTERACTIVE (office): Sugiriendo ${final_time_to_set}`);\n        needs_interaction = true;\n        break;\n\n    default: // Sin source específico, o un source no reconocido -> Interacción Normal\n        final_time_to_set = getPersonalOrDefaultTime();\n        if (final_time_to_set === \"05:00:00\" && preferred_time_readable_personal === \"la hora habitual\"){ // Fallback\n            alexa_text_to_speak = `Parece que ya estás descansando. Como no pude leer tu preferencia, ¿configuro la alarma para las 05:00?`;\n        } else {\n            alexa_text_to_speak = `Parece que ya estás descansando. Normalmente tu alarma es a ${preferred_time_readable_personal}. ¿Configuro la alarma para esa hora?`;\n        }\n        node.log(`INTERACTIVE (default): Sugiriendo ${final_time_to_set}`);\n        needs_interaction = true;\n        break;\n}\n\n// Establecer msg.time_to_set final\nmsg.time_to_set = final_time_to_set;\n\nif (needs_interaction) {\n    msg.alexa_text = alexa_text_to_speak;\n    msg.alexa_event_id = \"FallbackAlarmConfirm\";\n    flow.set(\"temp_preferred_alarm_time\", msg.time_to_set);\n    return [msg, null]; // Salida 1 (superior) -> para preguntar a Alexa\n} else {\n    return [null, msg]; \n}",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2480,
+        "y": 575,
+        "wires": [
+            [
+                "ask_fallback_confirmation_sub"
+            ],
+            [
+                "56caeb9f10e20944"
+            ]
+        ]
+    },
+    {
+        "id": "ask_fallback_confirmation_sub",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Ask: Fallback Confirm?",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.alexa_actionable_notification",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"text\":\"{{alexa_text}}\",\"event_id\":\"{{alexa_event_id}}\",\"alexa_device\":\"media_player.echo_recamara\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "alexa_actionable_notification",
+        "x": 2730,
+        "y": 545,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "process_fallback_confirm_response_fn_sub",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Handle Fallback ",
+        "func": "// Restaurar la hora preferida desde la variable de flujo\nmsg.time_to_set = flow.get(\"temp_preferred_alarm_time\");\n// Opcional: limpiar la variable de flujo\n// flow.set(\"temp_preferred_alarm_time\", undefined);\n\nconst response = msg.payload.event.event_response;\nnode.status({text: `Respuesta Pref: ${response}`});\n\nlet outputs = [null, null];\n\nif (response === \"ResponseYes\") {\n    outputs[1] = msg; \n} else if (response === \"ResponseNo\") {\n    outputs[0] = msg;\n} else { \n    outputs[1] = msg; \n}\n\nreturn outputs;",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2500,
+        "y": 670,
+        "wires": [
+            [
+                "ask_for_custom_time_node_sub"
+            ],
+            [
+                "calculate_alarm_date_time_pref_sub"
+            ]
+        ]
+    },
+    {
+        "id": "calculate_alarm_date_time_pref_sub",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "formatRoomAlarm",
+        "func": "// Nombre del Nodo: formatRoomAlarm\n// ID: calculate_alarm_date_time_pref_sub\n\nconst alarmTimeStr = msg.time_to_set; // Espera \"HH:MM:SS\"\n\nif (!alarmTimeStr || typeof alarmTimeStr !== 'string' || !alarmTimeStr.match(/^\\d{2}:\\d{2}:\\d{2}$/)) {\n    node.error(\"Formato de msg.time_to_set inválido. Se esperaba HH:MM:SS. Valor recibido: \" + alarmTimeStr, msg);\n    // Preparamos un service_data que aún así pasaría algo al siguiente nodo,\n    // pero el datetime es claramente un fallback de error.\n    msg.service_data = {\n        // No incluimos entity_id aquí, ya que se define en el nodo \"set Alarm\"\n        datetime: \"1970-01-01 00:00:00\" // Formato YYYY-MM-DD HH:MM:SS\n    };\n    node.warn(\"Usando datetime de fallback debido a error en time_to_set.\");\n    return msg;\n}\n\nconst [alarmHour, alarmMinutes, alarmSeconds] = alarmTimeStr.split(':').map(Number);\nconst now = new Date();\nconst currentHour = now.getHours();\nconst currentMinutes = now.getMinutes();\nlet alarmDate = new Date(now); // Empezamos con la fecha de hoy\n\n// Ajustar la fecha al día siguiente si la hora actual ya pasó la hora de la alarma para \"hoy\"\nif (currentHour > alarmHour || (currentHour === alarmHour && currentMinutes >= alarmMinutes)) {\n    alarmDate.setDate(now.getDate() + 1);\n    node.status({ fill: \"blue\", shape: \"dot\", text: `Alarma para mañana a las ${alarmTimeStr}` });\n} else {\n    node.status({ fill: \"green\", shape: \"dot\", text: `Alarma para hoy a las ${alarmTimeStr}` });\n}\n\nconst year = alarmDate.getFullYear();\nconst month = (alarmDate.getMonth() + 1).toString().padStart(2, '0'); // Meses son 0-11\nconst day = alarmDate.getDate().toString().padStart(2, '0');\n\n// Formato YYYY-MM-DD HH:MM:SS (con espacio, según la documentación que mostraste)\nconst alarmDateTimeStr = `${year}-${month}-${day} ${alarmTimeStr}`;\n\n// msg.service_data solo contendrá los datos para el payload del servicio,\n// no el entity_id, ya que este se define en el nodo \"set Alarm\".\nlet xmsg = null;\nxmsg= {\n    datetime: alarmDateTimeStr\n};\n\nnode.log(`Preparado service_data para alarma: ${JSON.stringify(msg.service_data)}`);\n\nmsg.payload = xmsg;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2710,
+        "y": 715,
+        "wires": [
+            [
+                "e048e855f1451d0e"
+            ]
+        ]
+    },
+    {
+        "id": "update_flow_vars_alarm_set_sub",
+        "type": "change",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Flow Vars: Alarm SET",
+        "rules": [
+            {
+                "t": "set",
+                "p": "alarmEnabled",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "locked",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "attempts",
+                "pt": "flow",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3075,
+        "y": 715,
+        "wires": [
+            [
+                "a377cbcaa7319c10"
+            ]
+        ]
+    },
+    {
+        "id": "ask_for_custom_time_node_sub",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Ask: Custom Alarm Time?",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.alexa_actionable_notification",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"text\":\"Entendido. Entonces, ¿a qué hora quieres que configure la alarma?\",\"event_id\":\"SpecifyCustomAlarmTimeFallback\",\"alexa_device\":\"media_player.echo_recamara\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "alexa_actionable_notification",
+        "x": 2730,
+        "y": 635,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "process_custom_time_response_node_sub",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Handle Custom Alarm",
+        "func": "// Nodo: Handle Custom Alarm\n// ID: process_custom_time_response_node_sub\n\nconst eventData = msg.payload.event;\nconst responseType = eventData.event_response_type;\nconst rawResponse = eventData.event_response;\n\nnode.status({ text: `Tipo: ${responseType}, Resp: ${rawResponse}` });\n\nlet outputs = [null, null]; // [0] = Hora OK, [1] = No configurar/Error\n\nif (responseType === \"ResponseDateTime\") {\n    try {\n        const dateTimeObj = JSON.parse(rawResponse);\n        const hour = dateTimeObj.hour;\n        const minute = dateTimeObj.minute;\n        // const seconds = dateTimeObj.seconds; // Opcional, si Alexa lo devuelve y lo necesitas\n\n        if (hour !== null && minute !== null && typeof hour !== 'undefined' && typeof minute !== 'undefined') {\n            const paddedHours = String(hour).padStart(2, '0');\n            const paddedMinutes = String(minute).padStart(2, '0');\n            // Si Alexa no devuelve segundos, asumimos 00.\n            // Si en el futuro devuelve segundos y quieres usarlos, descomenta y ajusta:\n            // const paddedSeconds = (seconds !== null && typeof seconds !== 'undefined' ? String(seconds) : '0').padStart(2, '0');\n            const paddedSeconds = \"00\";\n\n            msg.time_to_set = `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;\n            node.log(`Hora parseada de ResponseDateTime: ${msg.time_to_set}`);\n            outputs[0] = msg; // Hora OK\n        } else {\n            node.warn(\"ResponseDateTime recibido pero con hora/minutos nulos o indefinidos.\");\n            msg.reason_for_no_alarm = \"Hora personalizada de Alexa incompleta.\";\n            outputs[1] = msg; // Error\n        }\n    } catch (e) {\n        node.error(\"Error al parsear JSON de ResponseDateTime: \" + e.message, msg);\n        msg.reason_for_no_alarm = \"Error procesando hora de Alexa.\";\n        outputs[1] = msg; // Error\n    }\n} else if (rawResponse === \"ResponseNo\" || rawResponse === \"ResponseNone\" || (typeof rawResponse === 'string' && rawResponse.toLowerCase().includes(\"cancel\"))) {\n    node.log(\"Usuario canceló o respondió NO a la hora personalizada.\");\n    msg.reason_for_no_alarm = \"Usuario canceló.\";\n    outputs[1] = msg; // No configurar alarma\n} else {\n    // Fallback si la respuesta no es ResponseDateTime ni una negativa conocida.\n    // Aquí podrías intentar tu lógica de parsing de texto anterior si quieres,\n    // o simplemente tratarlo como un error/no entendido.\n    // Por simplicidad, lo trataremos como no entendido por ahora.\n    node.warn(`Tipo de respuesta no esperado o respuesta de texto no reconocida: '${rawResponse}' (Tipo: ${responseType})`);\n    msg.reason_for_no_alarm = \"Hora personalizada no entendida (formato inesperado).\";\n    outputs[1] = msg; // No configurar / Error\n}\n\nreturn outputs;",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2480,
+        "y": 770,
+        "wires": [
+            [
+                "calculate_alarm_date_time_pref_sub"
+            ],
+            [
+                "speak_custom_alarm_not_set_node_sub"
+            ]
+        ]
+    },
+    {
+        "id": "speak_custom_alarm_set_node_sub",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Speak: Custom Alarm Set",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "notify.alexa_media",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"message\":\"listo, a descansar.\",\"target\":\"media_player.echo_recamara\",\"data\":{\"type\":\"announce\"}}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "notify",
+        "service": "alexa_media",
+        "x": 3495,
+        "y": 715,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "speak_custom_alarm_not_set_node_sub",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Speak: Custom Alarm NOT Set",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "notify.alexa_media",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"message\":\"De acuerdo, no hay problema. No configuraré la alarma.\",\"target\":\"media_player.echo_recamara\",\"data\":{\"type\":\"announce\"}}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "notify",
+        "service": "alexa_media",
+        "x": 2750,
+        "y": 775,
+        "wires": [
+            [
+                "update_flow_vars_no_alarm_sub"
+            ]
+        ]
+    },
+    {
+        "id": "update_flow_vars_no_alarm_sub",
+        "type": "change",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Flow Vars: NO Alarm",
+        "rules": [
+            {
+                "t": "set",
+                "p": "locked",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "attempts",
+                "pt": "flow",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3000,
+        "y": 775,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e048e855f1451d0e",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "set Alarm",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_datetime.set_datetime",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_datetime.fvicente_room_alarm"
+        ],
+        "labelId": [],
+        "data": "payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "input_datetime",
+        "service": "set_datetime",
+        "x": 2890,
+        "y": 715,
+        "wires": [
+            [
+                "update_flow_vars_alarm_set_sub"
+            ]
+        ]
+    },
+    {
+        "id": "f6c324d459bcea8e",
+        "type": "server-events",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Notification Response",
+        "server": "19d43bb6f280b2ff",
+        "version": 3,
+        "exposeAsEntityConfig": "",
+        "eventType": "alexa_actionable_notification",
+        "eventData": "",
+        "waitForRunning": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            }
+        ],
+        "x": 2115,
+        "y": 720,
+        "wires": [
+            [
+                "ca53714ea1f9fd0a"
+            ]
+        ],
+        "icon": "node-red-contrib-alexa-remote2-mattl0/alexa-remote-icon.png"
+    },
+    {
+        "id": "ca53714ea1f9fd0a",
+        "type": "switch",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Topic",
+        "property": "payload.event.event_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "FallbackAlarmConfirm",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "SpecifyCustomAlarmTimeFallback",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2290,
+        "y": 720,
+        "wires": [
+            [
+                "process_fallback_confirm_response_fn_sub"
+            ],
+            [
+                "process_custom_time_response_node_sub"
+            ]
+        ],
+        "outputLabels": [
+            "Backlight",
+            "Delay"
+        ]
+    },
+    {
+        "id": "99f404dd1dbcc15a",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "gymSetAlarm",
+        "mode": "link",
+        "links": [
+            "ab0c9bafb8f02ff6"
+        ],
+        "x": 940,
+        "y": 775,
+        "wires": []
+    },
+    {
+        "id": "ab0c9bafb8f02ff6",
+        "type": "link in",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "setALarm",
+        "links": [
+            "50d6e2f4d515bc51",
+            "2f90b7a21ed9bce3",
+            "6957ae94ad63328f",
+            "99f404dd1dbcc15a"
+        ],
+        "x": 2125,
+        "y": 575,
+        "wires": [
+            [
+                "get_preferred_alarm_time_sub"
+            ]
+        ]
+    },
+    {
+        "id": "56caeb9f10e20944",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "Alarm",
+        "mode": "link",
+        "links": [
+            "c249a3fd652544d8"
+        ],
+        "x": 2645,
+        "y": 590,
+        "wires": []
+    },
+    {
+        "id": "c249a3fd652544d8",
+        "type": "link in",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "alarmBypass",
+        "links": [
+            "56caeb9f10e20944"
+        ],
+        "x": 2550,
+        "y": 715,
+        "wires": [
+            [
+                "calculate_alarm_date_time_pref_sub"
+            ]
+        ]
+    },
+    {
+        "id": "50d6e2f4d515bc51",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "officeContext",
+        "mode": "link",
+        "links": [
+            "ab0c9bafb8f02ff6"
+        ],
+        "x": 935,
+        "y": 990,
+        "wires": []
+    },
+    {
+        "id": "cc645718177591b8",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Handle Global Attemps",
+        "func": "// Nodo: Handle_Global_Attempts\n// Salida 1: Para repetir la pregunta (necesita msg.event_id_to_repeat, msg.text_to_repeat)\n// Salida 2: Límite alcanzado, ir a SET ALARM (necesita msg.source establecido)\n\nconst attemptType = msg.attempt_context; // \"sleep\", \"delay\", \"gym\", \"office\"\nlet count = 0;\nlet flowCounterName = \"\";\nlet outputs = [null, null];\n\nswitch (attemptType) {\n    case \"sleep\": flowCounterName = \"attempts_sleep_count\"; break;\n    case \"delay\": flowCounterName = \"attempts_delay_count\"; break;\n    case \"gym\":   flowCounterName = \"attempts_gym_count\";   break;\n    case \"office\":flowCounterName = \"attempts_office_count\";break;\n    default:\n        node.error(\"Contexto de intento desconocido: \" + attemptType, msg);\n        return null; \n}\n\ncount = flow.get(flowCounterName) || 0;\ncount += 1;\nflow.set(flowCounterName, count);\n\nnode.status({ text: `${attemptType}: Intento ${count}` });\n\nif (count === 1) { // Primer intento -> Repetir pregunta\n    switch (attemptType) {\n        case \"sleep\":\n            msg.event_id = \"Sleep\";\n            msg.text_to_say = \"Lo siento, no te escuché, ¿Apago todo?\";\n            break;\n        case \"delay\":\n            msg.event_id = \"Delay\";\n            msg.text_to_say = \"Perdón, ¿Cuánto tiempo más?\";\n            break;\n        case \"gym\":\n            msg.event_id = \"Gym\";\n            msg.text_to_say = \"Lo siento, no te escuché. ¿Mañana vamos al gym?\";\n            break;\n        case \"office\":\n            msg.event_id = \"Office\";\n            msg.text_to_say = \"Perdón, ¿irás a la oficina?\";\n            break;\n    }\n    outputs[1] = msg; // Enviar a la Salida 2 para repetir\n} else { // Límite de intentos alcanzado (count >= 2)\n    flow.set(flowCounterName, 0); // Resetear contador\n\n    switch (attemptType) {\n        case \"sleep\": msg.source = \"sleep_silent\"; break;\n        case \"delay\": msg.source = \"delay_silent\"; break;\n        case \"gym\":   msg.source = \"gym_silent\";   break; // Límite de Gym AHORA va a gym_silent\n        case \"office\":msg.source = \"office_silent\";break; // Límite de Office AHORA va a office_silent\n    }\n    node.log(`Límite de intentos para ${attemptType}. Estableciendo msg.source = ${msg.source} para SET ALARM.`);\n    outputs[0] = msg; // Enviar a la Salida 1 para ir a SET ALARM\n}\n\nreturn outputs;",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1600,
+        "y": 840,
+        "wires": [
+            [
+                "2f90b7a21ed9bce3"
+            ],
+            [
+                "d224a5eb53513b89"
+            ]
+        ]
+    },
+    {
+        "id": "5ccd43ebe8f9418b",
+        "type": "link in",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Attemps",
+        "links": [
+            "0baf2201d32b0d09",
+            "49b323b8a880bb84",
+            "589f5fe26df461fe",
+            "c9af386d2d4d93f1"
+        ],
+        "x": 1450,
+        "y": 840,
+        "wires": [
+            [
+                "cc645718177591b8"
+            ]
+        ]
+    },
+    {
+        "id": "2f90b7a21ed9bce3",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Silent",
+        "mode": "link",
+        "links": [
+            "ab0c9bafb8f02ff6"
+        ],
+        "x": 1760,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "d224a5eb53513b89",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Repeat Answer",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.alexa_actionable_notification",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\"text\":\"{{text_to_say}}\",\"event_id\":\"{{event_id}}\",\"alexa_device\":\"media_player.echo_recamara\"}",
+        "dataType": "json",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "alexa_actionable_notification",
+        "output_location": "",
+        "output_location_type": "none",
+        "x": 1825,
+        "y": 880,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "589f5fe26df461fe",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "sleepAttmpts",
+        "mode": "link",
+        "links": [
+            "5ccd43ebe8f9418b"
+        ],
+        "x": 935,
+        "y": 505,
+        "wires": []
+    },
+    {
+        "id": "49b323b8a880bb84",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "gymAttmpts",
+        "mode": "link",
+        "links": [
+            "5ccd43ebe8f9418b"
+        ],
+        "x": 935,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "c9af386d2d4d93f1",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "delayAttmpts",
+        "mode": "link",
+        "links": [
+            "5ccd43ebe8f9418b"
+        ],
+        "x": 935,
+        "y": 655,
+        "wires": []
+    },
+    {
+        "id": "0baf2201d32b0d09",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "officeAttmpts",
+        "mode": "link",
+        "links": [
+            "5ccd43ebe8f9418b"
+        ],
+        "x": 935,
+        "y": 1070,
+        "wires": []
+    },
+    {
+        "id": "1caac1962da875b5",
+        "type": "function",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Handle Invalid Answers",
+        "func": "// Nodo: Prepare_Repeat_Text_For_Invalid_Answer\nconst invalid_context = msg.invalid_context;\n\nswitch (invalid_context) {\n    case \"sleep\":\n        msg.text_to_say = \"Lo siento, no entendí. ¿Apago todo?\";\n        msg.event_id = \"Sleep\";\n        break;\n    case \"delay\":\n        msg.text_to_say = \"Perdón, no entendí. ¿Cuánto tiempo más?\";\n        msg.event_id = \"Delay\";\n        break;\n    case \"gym\":\n        msg.text_to_say = \"No entendí, ¿Mañana irás al GYM?\";\n        msg.event_id = \"Gym\";\n        break;\n    case \"office\":\n        msg.text_to_say = \"Lo siento, no entendí. ¿Mañana irás a la oficina?\";\n        msg.event_id = \"Office\";\n        break;\n    default:\n        node.warn(\"Contexto inválido desconocido: \" + invalid_context);\n        // Quizás un texto de error genérico\n        msg.text_to_say = \"Lo siento, tuve un problema.\";\n        msg.event_id = \"Error\"; // O no enviar nada\n        return null; \n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1595,
+        "y": 915,
+        "wires": [
+            [
+                "d224a5eb53513b89"
+            ]
+        ]
+    },
+    {
+        "id": "77be8b676261f0bb",
+        "type": "link in",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "Invalid",
+        "links": [
+            "af98fd0e68527d47",
+            "71753f60ceb8e351",
+            "3cb7ab476f78e78d",
+            "133cab8098a15aef"
+        ],
+        "x": 1445,
+        "y": 915,
+        "wires": [
+            [
+                "1caac1962da875b5"
+            ]
+        ]
+    },
+    {
+        "id": "af98fd0e68527d47",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "gyminvalid",
+        "mode": "link",
+        "links": [
+            "77be8b676261f0bb"
+        ],
+        "x": 935,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "71753f60ceb8e351",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "officeInvalid",
+        "mode": "link",
+        "links": [
+            "77be8b676261f0bb"
+        ],
+        "x": 935,
+        "y": 1110,
+        "wires": []
+    },
+    {
+        "id": "3cb7ab476f78e78d",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "delayInvalid",
+        "mode": "link",
+        "links": [
+            "77be8b676261f0bb"
+        ],
+        "x": 930,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "133cab8098a15aef",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "sleepInvalid",
+        "mode": "link",
+        "links": [
+            "77be8b676261f0bb"
+        ],
+        "x": 935,
+        "y": 550,
+        "wires": []
+    },
+    {
+        "id": "6957ae94ad63328f",
+        "type": "link out",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "noOffice",
+        "mode": "link",
+        "links": [
+            "ab0c9bafb8f02ff6"
+        ],
+        "x": 935,
+        "y": 1030,
+        "wires": []
+    },
+    {
+        "id": "a377cbcaa7319c10",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "sleepingMode",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "input_boolean.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "input_boolean.fvicente_sleeping"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "input_boolean",
+        "service": "turn_on",
+        "x": 3280,
+        "y": 715,
+        "wires": [
+            [
+                "speak_custom_alarm_set_node_sub"
+            ]
+        ]
+    },
+    {
+        "id": "e4807c8a583026bd",
+        "type": "api-call-service",
+        "z": "e5f68339573c09ac",
+        "name": "snapshot",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "scene.create",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "{\t    \"scene_id\":\"alexa_state\",\t    \"snapshot_entities\":\"media_player.echo_recamara\"\t}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "scene",
+        "service": "create",
+        "x": 995,
+        "y": 150,
+        "wires": [
+            []
+        ],
+        "icon": "font-awesome/fa-circle-o-notch"
+    },
+    {
+        "id": "7a573ee454f0f9ac",
+        "type": "inject",
+        "z": "e5f68339573c09ac",
+        "g": "cb5cabb593da2e10",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 22 * * 1,2,3,4,0",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 695,
+        "y": 325,
+        "wires": [
+            [
+                "2725f968895457c6"
+            ]
+        ]
+    },
+    {
+        "id": "734381d90ce1277c",
+        "type": "inject",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 07 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Restart",
+        "payloadType": "str",
+        "x": 3320,
+        "y": 545,
+        "wires": [
+            [
+                "3dc87409d7457c92"
+            ]
+        ]
+    },
+    {
+        "id": "3dc87409d7457c92",
+        "type": "change",
+        "z": "e5f68339573c09ac",
+        "g": "55a4de9fdb400310",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "alarmEnabled",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3505,
+        "y": 545,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e1d7c6b3.a4f1f8",
+        "type": "inject",
+        "z": "81f4036b79b50426",
+        "g": "affa9a5edec2e57c",
+        "name": "ini",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ini",
+        "payloadType": "str",
+        "x": 455,
+        "y": 90,
+        "wires": [
+            [
+                "315cbf1e298c77b2"
+            ]
+        ]
+    },
+    {
+        "id": "f9e8d7c6.b5a4b3",
+        "type": "api-call-service",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "echo Notify",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.notify_alexa_device",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "notify_alexa_device",
+        "x": 415,
+        "y": 395,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d7dda84bdb06e803",
+        "type": "api-current-state",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "Phone status",
+        "server": "19d43bb6f280b2ff",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.fvicente_phone_battery_details",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 520,
+        "y": 195,
+        "wires": [
+            [
+                "eba5e914a9893e1a"
+            ]
+        ]
+    },
+    {
+        "id": "eba5e914a9893e1a",
+        "type": "function",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "setVariables",
+        "func": "const battery_level = msg.data.state;\nconst is_charging = msg.data.attributes.is_charging\n\n\nflow.set(\"i_Battery_level\", parseInt(battery_level));\nflow.set(\"i_Battery_is_charging\", is_charging);\n\nmsg.payload = \"next\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 705,
+        "y": 195,
+        "wires": [
+            [
+                "1fc37e0f23830f8a"
+            ]
+        ]
+    },
+    {
+        "id": "d2b650b06d76d875",
+        "type": "api-current-state",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "Person status",
+        "server": "19d43bb6f280b2ff",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.fvicente_person_details",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 530,
+        "y": 240,
+        "wires": [
+            [
+                "c083e9596910c25f"
+            ]
+        ]
+    },
+    {
+        "id": "c083e9596910c25f",
+        "type": "function",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "setVariables",
+        "func": "const is_at_home = msg.data.attributes.is_at_home;\nflow.set(\"i_Person_is_at_home\", is_at_home);\n\nmsg.payload = \"next\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 705,
+        "y": 240,
+        "wires": [
+            [
+                "9e1033f81db83d3a"
+            ]
+        ]
+    },
+    {
+        "id": "f024192b17a92e8d",
+        "type": "api-current-state",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "Plug Status",
+        "server": "19d43bb6f280b2ff",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "entity_id": "switch.fvicente_phone_charger",
+        "state_type": "str",
+        "blockInputOverrides": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 520,
+        "y": 285,
+        "wires": [
+            [
+                "b4c9a411ca801c12"
+            ]
+        ]
+    },
+    {
+        "id": "b4c9a411ca801c12",
+        "type": "function",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "setVariables",
+        "func": "const plug_is_on = msg.payload;\nvar state;\nif (plug_is_on === 'on'){\n    state = true\n}else{\n    state = false\n}\n\nflow.set(\"i_Plug_is_on\", state);\n\nmsg.payload = \"next\";\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 705,
+        "y": 285,
+        "wires": [
+            [
+                "890a0e378e74b438"
+            ]
+        ]
+    },
+    {
+        "id": "7751089147a9f0a8",
+        "type": "function",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "ON Logic",
+        "func": "// --- Funciones de ayuda para validación ---\nfunction isValidBoolean(value, varName, errors) {\n    if (value === undefined || value === null) {\n        errors.push(`${varName}: No definido.`);\n        return false;\n    }\n    if (typeof value !== 'boolean') {\n        errors.push(`${varName}: Debe ser booleano (recibido: ${typeof value} '${value}').`);\n        return false;\n    }\n    return true;\n}\n\nfunction isValidNumber(value, varName, errors, range = null, defaultValue = undefined) {\n    if (value === undefined || value === null) {\n        if (defaultValue !== undefined) return defaultValue; // Usar default si no está definido\n        errors.push(`${varName}: No definido.`);\n        return undefined; // Indica que no hay valor válido\n    }\n    if (typeof value !== 'number' || isNaN(value)) {\n        if (defaultValue !== undefined) return defaultValue; // Usar default si es tipo incorrecto\n        errors.push(`${varName}: Debe ser un número (recibido: ${typeof value} '${value}').`);\n        return undefined;\n    }\n    if (range && (value < range[0] || value > range[1])) {\n        errors.push(`${varName}: Fuera de rango [${range[0]}-${range[1]}] (recibido: ${value}).`);\n        // No retornamos undefined aquí, el valor es un número pero fuera de rango.\n        // La lógica posterior decidirá si esto es un error fatal.\n    }\n    return value;\n}\n\n// --- Obtener y Validar Variables ---\nlet errors = [];\n\n// Variables de estado (booleanas, no opcionales)\nconst battery_is_charging = flow.get(\"i_Battery_is_charging\");\nisValidBoolean(battery_is_charging, \"i_Battery_is_charging\", errors);\n\nconst plug_is_on = flow.get(\"i_Plug_is_on\");\nisValidBoolean(plug_is_on, \"i_Plug_is_on\", errors);\n\nconst person_is_at_home = flow.get(\"i_Person_is_at_home\");\nisValidBoolean(person_is_at_home, \"i_Person_is_at_home\", errors);\n\n// Variables numéricas\nlet battery_level = isValidNumber(flow.get(\"i_Battery_level\"), \"i_Battery_level\", errors, [0, 100]);\nlet criticalLevel = isValidNumber(flow.get(\"p_BatteryCritLevel\"), \"p_BatteryCritLevel\", errors, [0, 100], 10);\nlet minLevel = isValidNumber(flow.get(\"p_BatteryMinLevel\"), \"p_BatteryMinLevel\", errors, [0, 100], 20);\n\n\nlet fullChargeStart = isValidNumber(flow.get(\"p_FullChargeStart\"), \"p_FullChargeStart\", errors, [0, 23], 2);\nlet fullChargeEnd = isValidNumber(flow.get(\"p_FullChargeEnd\"), \"p_FullChargeEnd\", errors, [0, 23], 6);\nlet echoNotifyStart = isValidNumber(flow.get(\"p_EchoNotifyStart\"), \"p_EchoNotifyStart\", errors, [0, 23], 7);\nlet echoNotifyEnd = isValidNumber(flow.get(\"p_EchoNotifyEnd\"), \"p_EchoNotifyEnd\", errors, [0, 23], 22);\n\nconst fullLevel = 100;\n// Variable de bloqueo (booleana, pero puede ser opcional o no existir)\nconst flow_locked_raw = flow.get(\"m_OnLogicLock\");\nlet flow_locked = undefined; // Valor final a usar\nif (flow_locked_raw !== undefined && flow_locked_raw !== null) {\n    if (isValidBoolean(flow_locked_raw, \"m_OnLogicLock\", errors)) {\n        flow_locked = flow_locked_raw;\n    }\n} else {\n    flow_locked = false; // Default si no está definido, o ajusta según tu lógica\n}\n\n\n// --- Validaciones Lógicas Adicionales ---\n// Solo si no hay errores fatales de tipo o existencia en las variables numéricas clave\nif (battery_level !== undefined && criticalLevel !== undefined && minLevel !== undefined) {\n    if (criticalLevel >= minLevel) {\n        errors.push(`Lógica: p_BatteryCritLevel (${criticalLevel}) debe ser menor que p_BatteryMinLevel (${minLevel}).`);\n    }\n}\n\n// --- Finalizar validación ---\nif (errors.length > 0) {\n    node.error(\"OFF Logic - Problemas de validación:\\n- \" + errors.join(\"\\n- \"), msg);\n    return [null, null, null];\n}\n\n\n// --- Hora actual y helpers ---\nconst now = new Date();\nconst currentHour = now.getHours(); // 0-23\n\n\n// --- Función Helper para verificar si es horario de Carga Completa Nocturna ---\nfunction isFullChargeTime(ch, startHour, endHour) {\n    // ch: currentHour, startHour: p_FullChargeStart, endHour: p_FullChargeEnd\n    if (typeof startHour !== 'number' || typeof endHour !== 'number') {\n        node.warn(\"Horas de carga completa nocturna no definidas correctamente. Revisar parámetros p_FullChargeStart/End. Asumiendo que NO es horario de carga nocturna.\");\n        return false; // Por defecto, no asumir que es horario de carga nocturna si no está bien configurado.\n    }\n    // Caso 1: El rango no cruza la medianoche (ej. 2 AM a 6 AM -> startHour=2, endHour=6)\n    if (startHour <= endHour) {\n        return ch >= startHour && ch < endHour;\n    }\n    // Caso 2: El rango cruza la medianoche (ej. 10 PM a 6 AM -> startHour=22, endHour=6)\n    else { // startHour > endHour\n        return ch >= startHour || ch < endHour;\n    }\n}\n\n// --- Usar los helpers ---\nconst isNightChargeTime = isFullChargeTime(currentHour, fullChargeStart, fullChargeEnd);\n\n\n// --- Inicializar mensajes de salida ---\nlet echoScriptPayload = null;  // Para script de Alexa\nlet appScriptPayload = null;   // Para script de notificación de app\nlet plugCtrlPayload = null;  // Para controlar el enchufe (ej. { payload: \"on\" })\n\nlet failPayload = { payload: \"all ok\" };\n\n// 1. SALIDA TEMPRANA: Si ya está cargando (y plug encendido) O si el flujo está bloqueado por el timer.\nif ((battery_is_charging && plug_is_on) || flow_locked) {\n    if (battery_is_charging && plug_is_on) {\n        node.status({ fill: \"green\", shape: \"dot\", text: `Cargando al ${battery_level}%. Todo en orden.` });\n    } else if (flow_locked) {\n        node.status({ fill: \"grey\", shape: \"ring\", text: \"Lógica de encendido en pausa.\" });\n    }\n    return [null, null, null, failPayload];\n}\n\n// Variables temporales para construir los mensajes\nlet tempAppMsg = null;\nlet tempEchoMsg = null;\n\n\n// control\nlet ChargingFailCount = flow.get(\"m_ChargingFailCount\") || 0;\n\n// Escenario A: ENCENDIDO INICIAL DEL PLUG (si está apagado y se cumplen condiciones)\nif (!plug_is_on) {\n    let reason_to_turn_on = null;\n    let friendly_reason = \"\";\n\n    if (battery_level <= criticalLevel && !battery_is_charging && person_is_at_home) {\n        reason_to_turn_on = \"criticalLevel\";\n        friendly_reason = \"Batería crítica\";\n    } else if (battery_level <= minLevel && !battery_is_charging && person_is_at_home) {\n        reason_to_turn_on = \"lowLevel\";\n        friendly_reason = \"Batería baja\";\n    } else if (isNightChargeTime && battery_level < fullLevel && !battery_is_charging && person_is_at_home) {\n        reason_to_turn_on = \"night_charge\";\n        friendly_reason = \"Carga nocturna programada\";\n    }\n\n    if (reason_to_turn_on) {\n        node.status({\n            fill: (reason_to_turn_on === \"criticalLevel\" ? \"red\" : (reason_to_turn_on === \"lowLevel\" ? \"yellow\" : \"blue\")),\n            shape: \"dot\", text: `Activando cargador: ${friendly_reason} (${battery_level}%)`\n        });\n\n        plugCtrlPayload = { payload: \"on\" };\n\n        // Nivel Crítico\n        if (reason_to_turn_on === \"criticalLevel\") {\n            tempAppMsg = {\n                title: \"🔌⚡ ¡Batería Crítica!\",\n                message: `¡Atención! Tu dispositivo tiene solo ${battery_level}%. He encendido el cargador para que puedas conectarlo cuanto antes.`\n            };\n            tempEchoMsg = {\n                message: `Tu batería está en nivel crítico, al ${battery_level} por ciento. Ya activé el cargador, por favor conecta tu dispositivo pronto.`,\n                override_volume: 0.8\n            }\n            \n            // Nivel Bajo\n        } else if (reason_to_turn_on === \"lowLevel\") {\n            tempAppMsg = {\n                title: \"🔌 Batería Baja\",\n                message: `Tu dispositivo está al ${battery_level}%. ¡No te preocupes! Ya encendí el cargador para ti.`\n            };\n            tempEchoMsg = {\n                message: `He notado que la batería de tu dispositivo está baja, al ${battery_level} por ciento. Acabo de encender el cargador para tu comodidad.`,\n            };\n            \n\n            // Carga Nocturna\n        } else if (reason_to_turn_on === \"night_charge\") {\n            tempAppMsg = {\n                title: \"🌙 Carga Nocturna\",\n                message: `¡Hora de la carga nocturna! Tu dispositivo está al ${battery_level}%. Estará al 100% para cuando despiertes. ✨`\n            };\n        }\n    } else {\n        // Si no hay razón para encender, actualiza el estado para reflejarlo.\n        node.status({ fill: \"grey\", shape: \"ring\", text: `Enchufe apagado. Batería: ${battery_level}%. Esperando condiciones.` });\n    }\n\n}\n\n// Escenario B: si el plug YA está encendido pero NO está cargando\nelse if (plug_is_on && !battery_is_charging && person_is_at_home) {\n    ChargingFailCount++; \n    plugCtrlPayload = { payload: \"on\" }; // Mantiene el ciclo de reintentos/alertas\n    let statusText = \"\";\n\n    switch (ChargingFailCount) {\n        case 1:\n            tempAppMsg = {\n                title: \"ℹ️ INFO CARGADOR\",\n                message: \"Pon a cargar tu dispositivo.\"\n            };\n            tempEchoMsg = {\n                message: \"Atención, el cargador está encendido pero el dispositivo no se está cargando. por favor ponlo a cargar\",\n            };\n            statusText = \"Aviso 1: Plug ON, no carga.\";\n            flow.set(\"m_ChargingFailCount\", ChargingFailCount);\n            break;\n        case 2:\n            tempAppMsg = {\n                title: \"ℹ️ INFO CARGADOR\",\n                message: \"Pon a cargar tu dispositivo.\"\n            };\n            tempEchoMsg = {\n                message: \"El cargador está encendido pero el dispositivo continúa sin cargarse.\",\n            };\n            statusText = \"Aviso 2: Plug ON, no carga.\"\n            flow.set(\"m_ChargingFailCount\", ChargingFailCount);\n            break;\n        case 3:\n            tempAppMsg = {\n                title: \"ℹ️ ALERTA\",\n                message: \"Pon a cargar tu dispositivo, lo antes posible, de lo contrario 15 mins el cargador se apagará\"\n            };\n            tempEchoMsg = {\n                message: \"último aviso, El cargador está encendido pero el dispositivo continúa sin cargarse.\",\n                override_volume: 0.8\n            };\n            statusText = \"Aviso 3: Plug ON, no carga. Apagado inminente.\";\n            flow.set(\"m_ChargingFailCount\", ChargingFailCount);\n            break;\n        default:\n            flow.set(\"m_ChargingFailCount\", 0); //reestablecer el contador\n            plugCtrlPayload = null;\n            failPayload = { payload: \"fail\", reason: \"Device not charging after multiple attempts with plug ON\" };\n            tempAppMsg = { \n                title: \"🔌❌ Fallo de Carga Persistente\",\n                message: \"Tras varios intentos, el dispositivo no carga con el enchufe activo. Se ha desactivado el ciclo de alertas. El enchufe podría apagarse pronto.\"\n            };\n            statusText = \"Fallo persistente. Reseteando contador.\";\n            node.warn(\"ON Logic: Fallo de carga persistente. El cargador se apagará si no se detecta carga (manejado por OFF Logic).\");\n    }\n    node.status({ fill: \"orange\", shape: \"dot\", text: statusText });\n\n} else if (plug_is_on && !battery_is_charging && !person_is_at_home) {\n    node.status({ fill: \"yellow\", shape: \"ring\", text: \"Plug ON, no carga, nadie en casa.\" });\n\n    flow.set(\"m_ChargingFailCount\", 0);\n}\n\n\n// Modelar mensaje para la App\nif (tempAppMsg) {\n    appScriptPayload = {\n        device_target: \"fvicente_phone\",\n        title: tempAppMsg.title,\n        message: tempAppMsg.message\n    };\n}\n\n// Modelar mensaje para Echo\nif (tempEchoMsg) { \n    echoScriptPayload = {\n        echo_target: \"echo_recamara\",\n        message: tempEchoMsg.message,\n        time_start: `${String(echoNotifyStart).padStart(2, '0')}:00:00`,\n        time_end: `${String(echoNotifyEnd).padStart(2, '0')}:00:00`\n    };\n} \n\n// Construir los mensajes de salida para Node-RED\n// msg1 para Echo, msg2 para App, msg3 para Plug Control\nlet outMsg1 = echoScriptPayload ? { payload: echoScriptPayload } : null;\nlet outMsg2 = appScriptPayload ? { payload: appScriptPayload } : null;\nlet outMsg3 = plugCtrlPayload ? plugCtrlPayload : null;\nlet outMsg4 = failPayload ? failPayload : null;\n\n\nreturn [outMsg1, outMsg2, outMsg3, outMsg4];",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 245,
+        "y": 460,
+        "wires": [
+            [
+                "f9e8d7c6.b5a4b3"
+            ],
+            [
+                "a34b367a5dbb3695"
+            ],
+            [
+                "4c349a73ca4cf6ab"
+            ],
+            [
+                "e1a782761a3fe8e6"
+            ]
+        ]
+    },
+    {
+        "id": "35fbe3b7ec2e7090",
+        "type": "function",
+        "z": "81f4036b79b50426",
+        "g": "e97829c64f60f677",
+        "name": "OFF Logic",
+        "func": "// --- Funciones de ayuda para validación (Tomadas del nodo ON) ---\nfunction isValidBoolean(value, varName, errors) {\n    if (value === undefined || value === null) {\n        errors.push(`${varName}: No definido.`);\n        return false;\n    }\n    if (typeof value !== 'boolean') {\n        errors.push(`${varName}: Debe ser booleano (recibido: ${typeof value} '${value}').`);\n        return false;\n    }\n    return value;\n}\n\nfunction isValidNumber(value, varName, errors, range = null, defaultValue = undefined) {\n    if (value === undefined || value === null) {\n        if (defaultValue !== undefined) return defaultValue;\n        errors.push(`${varName}: No definido.`);\n        return undefined;\n    }\n    if (typeof value !== 'number' || isNaN(value)) {\n        if (defaultValue !== undefined) return defaultValue;\n        errors.push(`${varName}: Debe ser un número (recibido: ${typeof value} '${value}').`);\n        return undefined;\n    }\n    if (range && (value < range[0] || value > range[1])) {\n        errors.push(`${varName}: Fuera de rango [${range[0]}-${range[1]}] (recibido: ${value}).`);\n    }\n    return value;\n}\n\n// --- Obtener y Validar Variables ---\nlet errors = [];\n\n// Variables de estado (booleanas, no opcionales para la lógica principal)\nconst battery_is_charging_raw = flow.get(\"i_Battery_is_charging\");\nlet battery_is_charging = isValidBoolean(battery_is_charging_raw, \"i_Battery_is_charging\", errors);\n\nconst plug_is_on_raw = flow.get(\"i_Plug_is_on\");\nlet plug_is_on = isValidBoolean(plug_is_on_raw, \"i_Plug_is_on\", errors);\n\nconst person_is_at_home_raw = flow.get(\"i_Person_is_at_home\");\nlet person_is_at_home = isValidBoolean(person_is_at_home_raw, \"i_Person_is_at_home\", errors);\n\n// Variables numéricas\nlet battery_level = isValidNumber(flow.get(\"i_Battery_level\"), \"i_Battery_level\", errors, [0, 100]);\nlet maxLevel = isValidNumber(flow.get(\"p_BatteryMaxLevel\"), \"p_BatteryMaxLevel\", errors, [0, 100], 80);\nconst fullLevel = 100;\n\nlet fullChargeStart = isValidNumber(flow.get(\"p_FullChargeStart\"), \"p_FullChargeStart\", errors, [0, 23], 2);\nlet fullChargeEnd = isValidNumber(flow.get(\"p_FullChargeEnd\"), \"p_FullChargeEnd\", errors, [0, 23], 6);\nlet echoNotifyStart = isValidNumber(flow.get(\"p_EchoNotifyStart\"), \"p_EchoNotifyStart\", errors, [0, 23], 7);\nlet echoNotifyEnd = isValidNumber(flow.get(\"p_EchoNotifyEnd\"), \"p_EchoNotifyEnd\", errors, [0, 23], 22);\n\n// --- Finalizar validación ---\n// Solo ejecutar validación si el msg no es un comando de \"fail\"\n// Si es \"fail\", queremos apagar independientemente de las otras variables (si el plug está ON)\nlet isFailCommand = msg && msg.payload === \"fail\";\n\nif (!isFailCommand && errors.length > 0) {\n    node.error(\"OFF Logic - Problemas de validación:\\n- \" + errors.join(\"\\n- \"), msg);\n    return [null, null, null];\n}\n\n// --- Hora actual y helpers (Tomados del nodo ON) ---\nconst now = new Date();\nconst currentHour = now.getHours(); // 0-23\n\n\nfunction isFullChargeTime(ch, startHour, endHour) {\n    if (typeof startHour !== 'number' || typeof endHour !== 'number') {\n        node.warn(\"OFF Logic: Horas de carga completa nocturna no definidas correctamente. Revisar parámetros p_FullChargeStart/End. Asumiendo que NO es horario de carga nocturna.\");\n        return false;\n    }\n    if (startHour <= endHour) {\n        return ch >= startHour && ch < endHour;\n    } else {\n        return ch >= startHour || ch < endHour;\n    }\n}\n\nconst isNightChargePeriod = isFullChargeTime(currentHour, fullChargeStart, fullChargeEnd);\n\n// --- Inicializar mensajes de salida y payloads ---\nlet tempEchoMsg = null;\nlet tempAppMsg = null;\nlet plugCtrlPayload = null;\n\n// --- Lógica Principal de APAGADO ---\nlet reason_to_turn_off = null;\nlet friendly_reason_off = \"\";\n\n// Primero, verificar si el nodo se activó por un mensaje \"fail\" del nodo ON\nif (isFailCommand) {\n    if (plug_is_on) { // Solo apagar si realmente está encendido\n        reason_to_turn_off = \"on_logic_fail\";\n        friendly_reason_off = \"fallo en lógica de encendido\";\n        node.status({ fill: \"red\", shape: \"dot\", text: \"Detectado fallo desde ON Logic. Apagando enchufe.\" });\n        tempAppMsg = {\n            title: \"🔌 Fallo de Carga Detectado\",\n            message: \"Parece que tu dispositivo no pudo cargarse correctamente después de varios intentos. Para evitar problemas y ahorrar energía, he desactivado el cargador inteligente.\"\n        };\n        tempEchoMsg = {\n            message: \"Detecté que el dispositivo no se estaba cargando correctamente a pesar de los intentos. Por seguridad y para ahorrar energía, he apagado el enchufe inteligente.\",\n            override_volume: 0.8\n        };\n        \n    } else {\n        node.status({ fill: \"grey\", shape: \"ring\", text: \"Comando 'fail' recibido, pero el enchufe ya está apagado.\" });\n        return [null, null, null];\n    }\n\n} else {\n    if (plug_is_on === false) { // Usar '=== false' para claridad después de la validación\n        node.status({ fill: \"grey\", shape: \"ring\", text: `Enchufe ya apagado. Batería al ${battery_level !== undefined ? battery_level + \"%\" : \"N/A\"}. Sin acción.` });\n        return [null, null, null];\n    }\n\n    // Escenario 1: Batería alcanza el nivel máximo de carga\n    if (battery_level !== undefined && maxLevel !== undefined && battery_is_charging === true) {\n        let targetLevelForStop = isNightChargePeriod ? fullLevel : maxLevel;\n        let chargeCycleName = isNightChargePeriod ? \"nocturna\" : \"diurna\";\n        let chargeCompleteType = isNightChargePeriod ? \"Nocturna \" : \"\";\n\n        if (battery_level >= targetLevelForStop) {\n            reason_to_turn_off = \"battery_charged\";\n            friendly_reason_off = `batería cargada al ${battery_level}% (${chargeCycleName})`;\n            node.status({ fill: \"green\", shape: \"dot\", text: `Batería al ${battery_level}%. Cargador apagado.` });\n\n            tempAppMsg = {\n                title: `✅ Carga ${chargeCompleteType}Lista ✅`,\n                message: `¡Tu dispositivo ha alcanzado el ${battery_level}%! He desactivado el cargador para proteger la batería y ahorrar energía. ¡Listo para usar! 👍`\n            };\n            tempEchoMsg = {\n                message: `¡Buenas noticias! Tu dispositivo ha completado su carga ${chargeCycleName}, alcanzando el ${battery_level} por ciento. He apagado el cargador automáticamente.`\n            };\n\n            \n        }\n    }\n\n    // Escenario 2: Persona se va de casa\n    // Solo si no se cumplió la condición anterior (battery_charged)\n    if (!reason_to_turn_off && person_is_at_home === false && !isNightChargePeriod) {\n        reason_to_turn_off = \"person_absent\";\n        friendly_reason_off = \"usuario ausente (ahorro de energía)\";\n        node.status({ fill: \"orange\", shape: \"dot\", text: \"Usuario ausente. Cargador apagado para ahorrar.\" });\n\n        tempAppMsg = {\n            title: \"🏠✨ Cargador en Modo Ausente\",\n            message: \"He detectado que no estás en casa y el dispositivo no estaba en su ciclo de carga nocturna. Para ser eficiente, desactivé el cargador. ¡Todo bajo control!\"\n        };\n        // No se suele notificar por Echo si la persona se va, pero se podría añadir si se desea.\n    }\n}\n\n\n// --- Acciones y preparación de payloads si hay una razón para apagar ---\nif (reason_to_turn_off) {\n    plugCtrlPayload = { payload: \"off\" };\n    flow.set(\"m_ChargingFailCount\", 0); // Resetear contador de fallos del nodo ON\n    node.log(`OFF Logic: Apagando enchufe. Razón: ${friendly_reason_off}`);\n\n} else if (!isFailCommand && plug_is_on === true) { // Solo mostrar este estado si no fue un comando 'fail', el plug está ON y no hay razón para apagar\n    let statusText = `Enchufe activo. `;\n    if (battery_is_charging === true) {\n        statusText += `Cargando (${battery_level !== undefined ? battery_level + \"%\" : \"N/A\"}). `;\n    } else if (battery_is_charging === false) {\n        statusText += `No cargando (Batería al ${battery_level !== undefined ? battery_level + \"%\" : \"N/A\"}). `;\n    } else { // battery_is_charging es inválido\n        statusText += `Estado de carga desconocido. `;\n    }\n    statusText += `Esperando condición de apagado.`;\n    node.status({ fill: \"blue\", shape: \"ring\", text: statusText });\n}\n\n\n// --- Preparar Payloads de Salida (estilo nodo ON) ---\nlet echoScriptPayload = null;\nlet appScriptPayload = null;\n\nif (tempAppMsg) {\n    appScriptPayload = {\n        device_target: \"fvicente_phone\",\n        title: tempAppMsg.title,\n        message: tempAppMsg.message\n    };\n}\n\nif (tempEchoMsg) {\n    echoScriptPayload = {\n        echo_target: \"echo_recamara\",\n        message: tempEchoMsg.message,\n        time_start: `${String(echoNotifyStart).padStart(2, '0')}:00:00`,\n        time_end: `${String(echoNotifyEnd).padStart(2, '0')}:00:00`\n    };\n} \n\nlet outMsg1 = echoScriptPayload ? { payload: echoScriptPayload } : null;\nlet outMsg2 = appScriptPayload ? { payload: appScriptPayload } : null;\nlet outMsg3 = plugCtrlPayload ? plugCtrlPayload : null;\n\nreturn [outMsg1, outMsg2, outMsg3];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 440,
+        "wires": [
+            [
+                "e7c09e5e7e9f760e"
+            ],
+            [
+                "52cb0311c7476932"
+            ],
+            [
+                "e2bb80151d398d58"
+            ]
+        ]
+    },
+    {
+        "id": "4664acd40fe62783",
+        "type": "delay",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 655,
+        "y": 485,
+        "wires": [
+            [
+                "e4d70aea90d70179"
+            ]
+        ]
+    },
+    {
+        "id": "4c349a73ca4cf6ab",
+        "type": "api-call-service",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "Plug",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_on",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.fvicente_phone_charger"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "switch",
+        "service": "turn_on",
+        "x": 395,
+        "y": 485,
+        "wires": [
+            [
+                "d88e34a88f138593"
+            ]
+        ]
+    },
+    {
+        "id": "cbddb682b4ad9d8f",
+        "type": "link out",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "onLogic",
+        "mode": "link",
+        "links": [
+            "cab24698771ff894"
+        ],
+        "x": 895,
+        "y": 485,
+        "wires": []
+    },
+    {
+        "id": "ca818e66dd64b45c",
+        "type": "link in",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "onLogic",
+        "links": [
+            "890a0e378e74b438"
+        ],
+        "x": 145,
+        "y": 460,
+        "wires": [
+            [
+                "7751089147a9f0a8"
+            ]
+        ]
+    },
+    {
+        "id": "a34b367a5dbb3695",
+        "type": "api-call-service",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "app Notify",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.notify_mobile_device",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "notify_mobile_device",
+        "x": 405,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e7c09e5e7e9f760e",
+        "type": "api-call-service",
+        "z": "81f4036b79b50426",
+        "g": "e97829c64f60f677",
+        "name": "echo Notify",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.notify_alexa_device",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "notify_alexa_device",
+        "x": 1305,
+        "y": 395,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "52cb0311c7476932",
+        "type": "api-call-service",
+        "z": "81f4036b79b50426",
+        "g": "e97829c64f60f677",
+        "name": "app Notify",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "script.notify_mobile_device",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [],
+        "labelId": [],
+        "data": "payload",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": false,
+        "domain": "script",
+        "service": "notify_mobile_device",
+        "x": 1295,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2bb80151d398d58",
+        "type": "api-call-service",
+        "z": "81f4036b79b50426",
+        "g": "e97829c64f60f677",
+        "name": "Plug",
+        "server": "19d43bb6f280b2ff",
+        "version": 7,
+        "debugenabled": false,
+        "action": "switch.turn_off",
+        "floorId": [],
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.fvicente_phone_charger"
+        ],
+        "labelId": [],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "blockInputOverrides": true,
+        "domain": "switch",
+        "service": "turn_off",
+        "x": 1290,
+        "y": 485,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b1b4a89ef5f4c052",
+        "type": "trigger-state",
+        "z": "81f4036b79b50426",
+        "g": "b1e3fc690c31b4bf",
+        "name": "Battery",
+        "server": "19d43bb6f280b2ff",
+        "version": 5,
+        "inputs": 0,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.fvicente_phone_battery_details"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "debugEnabled": false,
+        "constraints": [],
+        "customOutputs": [],
+        "outputInitially": true,
+        "stateType": "num",
+        "enableInput": false,
+        "x": 185,
+        "y": 195,
+        "wires": [
+            [
+                "70114f4e48e6e336"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "668641b8e8c30576",
+        "type": "trigger-state",
+        "z": "81f4036b79b50426",
+        "g": "b1e3fc690c31b4bf",
+        "name": "Person",
+        "server": "19d43bb6f280b2ff",
+        "version": 5,
+        "inputs": 0,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "sensor.fvicente_person_details"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "debugEnabled": false,
+        "constraints": [],
+        "customOutputs": [],
+        "outputInitially": true,
+        "stateType": "str",
+        "enableInput": false,
+        "x": 185,
+        "y": 240,
+        "wires": [
+            [
+                "f95b804e3cdb715c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "8278eb89d6d0ec87",
+        "type": "trigger-state",
+        "z": "81f4036b79b50426",
+        "g": "b1e3fc690c31b4bf",
+        "name": "Plug",
+        "server": "19d43bb6f280b2ff",
+        "version": 5,
+        "inputs": 0,
+        "outputs": 2,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "switch.fvicente_phone_charger"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "debugEnabled": false,
+        "constraints": [],
+        "customOutputs": [],
+        "outputInitially": true,
+        "stateType": "str",
+        "enableInput": false,
+        "x": 185,
+        "y": 285,
+        "wires": [
+            [
+                "9237ebdbf8c4aa84"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "890a0e378e74b438",
+        "type": "link out",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "link out 1",
+        "mode": "link",
+        "links": [
+            "ca818e66dd64b45c"
+        ],
+        "x": 840,
+        "y": 285,
+        "wires": []
+    },
+    {
+        "id": "9e1033f81db83d3a",
+        "type": "link out",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "link out 2",
+        "mode": "link",
+        "links": [
+            "aae235f9557c95e3"
+        ],
+        "x": 840,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "1fc37e0f23830f8a",
+        "type": "link out",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "link out 3",
+        "mode": "link",
+        "links": [
+            "0f0416e5e8057644"
+        ],
+        "x": 840,
+        "y": 195,
+        "wires": []
+    },
+    {
+        "id": "cab24698771ff894",
+        "type": "link in",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "gePhoneState",
+        "links": [
+            "70114f4e48e6e336",
+            "9237ebdbf8c4aa84",
+            "f95b804e3cdb715c",
+            "cbddb682b4ad9d8f",
+            "ee4ee05eb42c27e7"
+        ],
+        "x": 400,
+        "y": 195,
+        "wires": [
+            [
+                "d7dda84bdb06e803"
+            ]
+        ]
+    },
+    {
+        "id": "0f0416e5e8057644",
+        "type": "link in",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "getPersonState",
+        "links": [
+            "1fc37e0f23830f8a"
+        ],
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "d2b650b06d76d875"
+            ]
+        ]
+    },
+    {
+        "id": "aae235f9557c95e3",
+        "type": "link in",
+        "z": "81f4036b79b50426",
+        "g": "68b3aeebe5d13932",
+        "name": "getPlugState",
+        "links": [
+            "9e1033f81db83d3a"
+        ],
+        "x": 400,
+        "y": 285,
+        "wires": [
+            [
+                "f024192b17a92e8d"
+            ]
+        ]
+    },
+    {
+        "id": "70114f4e48e6e336",
+        "type": "link out",
+        "z": "81f4036b79b50426",
+        "g": "b1e3fc690c31b4bf",
+        "name": "link out 4",
+        "mode": "link",
+        "links": [
+            "cab24698771ff894"
+        ],
+        "x": 290,
+        "y": 195,
+        "wires": []
+    },
+    {
+        "id": "f95b804e3cdb715c",
+        "type": "link out",
+        "z": "81f4036b79b50426",
+        "g": "b1e3fc690c31b4bf",
+        "name": "link out 5",
+        "mode": "link",
+        "links": [
+            "cab24698771ff894"
+        ],
+        "x": 290,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "9237ebdbf8c4aa84",
+        "type": "link out",
+        "z": "81f4036b79b50426",
+        "g": "b1e3fc690c31b4bf",
+        "name": "link out 6",
+        "mode": "link",
+        "links": [
+            "cab24698771ff894"
+        ],
+        "x": 290,
+        "y": 285,
+        "wires": []
+    },
+    {
+        "id": "d88e34a88f138593",
+        "type": "change",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "lock",
+        "rules": [
+            {
+                "t": "set",
+                "p": "m_OnLogicLock",
+                "pt": "flow",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 515,
+        "y": 485,
+        "wires": [
+            [
+                "4664acd40fe62783"
+            ]
+        ]
+    },
+    {
+        "id": "e4d70aea90d70179",
+        "type": "change",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "unlock",
+        "rules": [
+            {
+                "t": "set",
+                "p": "m_OnLogicLock",
+                "pt": "flow",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 795,
+        "y": 485,
+        "wires": [
+            [
+                "cbddb682b4ad9d8f"
+            ]
+        ]
+    },
+    {
+        "id": "632c599694500c5f",
+        "type": "inject",
+        "z": "81f4036b79b50426",
+        "g": "b1e3fc690c31b4bf",
+        "name": "manual",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 150,
+        "wires": [
+            [
+                "ee4ee05eb42c27e7"
+            ]
+        ]
+    },
+    {
+        "id": "ee4ee05eb42c27e7",
+        "type": "link out",
+        "z": "81f4036b79b50426",
+        "g": "b1e3fc690c31b4bf",
+        "name": "link out 7",
+        "mode": "link",
+        "links": [
+            "cab24698771ff894"
+        ],
+        "x": 290,
+        "y": 150,
+        "wires": []
+    },
+    {
+        "id": "315cbf1e298c77b2",
+        "type": "function",
+        "z": "81f4036b79b50426",
+        "g": "affa9a5edec2e57c",
+        "name": "setConfigurations",
+        "func": "\n// Niveles de batería\nflow.set(\"p_BatteryCritLevel\", 10);\nflow.set(\"p_BatteryMinLevel\", 20);\nflow.set(\"p_BatteryMaxLevel\", 80);\n// Ventana de notificaciones Echo\nflow.set(\"p_EchoNotifyStart\", 8);\nflow.set(\"p_EchoNotifyEnd\", 22);\n// Ventana de carga completa\nflow.set(\"p_FullChargeStart\", 2);\nflow.set(\"p_FullChargeEnd\", 6);\n// Monitoreo y control\nflow.set(\"m_OnLogicLock\", false);\nflow.set(\"m_ChargingFailCount\", 0);\n\n node.log(\"Variables de flujo de configuración establecidas.\");\n\nreturn msg; ",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 615,
+        "y": 90,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e1a782761a3fe8e6",
+        "type": "link out",
+        "z": "81f4036b79b50426",
+        "g": "2cd1d9f33aa8d5d6",
+        "name": "onLogic",
+        "mode": "link",
+        "links": [
+            "b1530ef6960e7bdc"
+        ],
+        "x": 360,
+        "y": 530,
+        "wires": []
+    },
+    {
+        "id": "b1530ef6960e7bdc",
+        "type": "link in",
+        "z": "81f4036b79b50426",
+        "g": "e97829c64f60f677",
+        "name": "offLogic",
+        "links": [
+            "e1a782761a3fe8e6"
+        ],
+        "x": 1010,
+        "y": 440,
+        "wires": [
+            [
+                "35fbe3b7ec2e7090"
+            ]
+        ]
+    }
+]
