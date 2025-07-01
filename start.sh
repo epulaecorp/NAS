@@ -4,8 +4,8 @@
 # Autor: epulaecorp
 # Repositorio: https://github.com/epulaecorp/NAS
 #
-# 
-# chmod +x bootstrap.sh
+# wget -q https://raw.githubusercontent.com/epulaecorp/NAS/refs/heads/main/start.sh
+# chmod +x start.sh
 # ./bootstrap.sh
 # ============================================================================
 set -e
