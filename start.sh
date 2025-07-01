@@ -3,6 +3,9 @@
 # Script de arranque para descargar archivos base del stack domótico
 # Autor: epulaecorp
 # Repositorio: https://github.com/epulaecorp/NAS
+#
+# 
+# chmod +x bootstrap.sh
 # ============================================================================
 set -e
 
