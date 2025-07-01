@@ -36,6 +36,22 @@ download_compose_file() {
     printf "\e[32mArchivo '${DOCKER_COMPOSE_FILE}' descargado/actualizado correctamente.\e[0m\n"
 }
 
+
+# Función para corregir permisos en contenedores clave
+fix_permissions() {
+  container="$1"
+  path="$2"
+  if docker ps -q -f name="$container" | grep -q .; then
+    echo "🔧 Corrigiendo permisos en $path dentro de $container..."
+    docker exec "$container" chown -R 1000:1000 "$path"
+  else
+    echo "⚠️ Contenedor $container no está corriendo. Saltando corrección de permisos."
+  fi
+}
+
+# Inicializar listas de éxito y fallo
+UPDATED_SERVICES=""
+FAILED_SERVICES=""
 update_service() {
     local service_name="$1"
     printf "\n=== Iniciando actualización para: \e[1m%s\e[0m ===\n" "$service_name"
@@ -46,6 +62,15 @@ update_service() {
     fi
 
     case "$service_name" in
+  nodered)
+    fix_permissions nodered /data
+    ;;
+  esphome)
+    fix_permissions esphome /config
+    ;;
+  codeserver)
+    fix_permissions codeserver /config
+    ;;
         music-assistant-server)
             printf "\e[33m⚠️  Advertencia: Music Assistant requiere configuración especial\e[0m\n"
             printf "¿Continuar con la actualización? (y/N): "
@@ -152,6 +177,9 @@ while true; do
                 
                 printf "¿Estás seguro de que quieres actualizar %s? (y/N): " "$selected_service"
                 read confirm_single
+else
+  printf "⚠️ Opción fuera de rango. Intenta de nuevo.\n"
+  continue
                 case "$confirm_single" in
                     [Yy]*)
                         update_service "$selected_service" || printf "\e[31mFallo al actualizar %s.\e[0m\n" "$selected_service"
@@ -191,4 +219,8 @@ case "$cleanup_confirm" in
         ;;
 esac
 
+
+echo "\nResumen de actualización:"
+echo "Servicios actualizados con éxito: $UPDATED_SERVICES"
+echo "Servicios con errores: $FAILED_SERVICES"
 printf "\nScript finalizado.\n\n"
