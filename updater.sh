@@ -1,75 +1,42 @@
 #!/bin/sh
-# Actualizador simplificado de contenedores Docker para Synology NAS
-# Versión 2.0 - Compatible con ash/sh
+# Actualizador de contenedores Docker para Synology - Versión minimalista
 
-# --- Configuración ---
-COMPOSE_FILE="/volume1/docker/docker-compose.yml"
+# Contenedores a actualizar
 SERVICES="homeassistant mosquitto zigbee2mqtt nodered esphome"
 
-# --- Verificar dependencias ---
-if ! command -v docker >/dev/null; then
-    echo "ERROR: Docker no está instalado" >&2
-    exit 1
-fi
-
-# --- Función de actualización ---
+# Función básica de actualización
 update_container() {
-    service=$1
-    echo "=== Actualizando $service ==="
-    
-    # Pull de la imagen más reciente
-    if ! docker compose -f "$COMPOSE_FILE" pull "$service"; then
-        echo "ERROR: Falló al descargar $service" >&2
-        return 1
-    fi
-    
-    # Reiniciar el contenedor
-    if ! docker compose -f "$COMPOSE_FILE" up -d --force-recreate "$service"; then
-        echo "ERROR: Falló al reiniciar $service" >&2
-        return 1
-    fi
-    
-    echo "✔ $service actualizado correctamente"
-    return 0
+    echo "=== Actualizando $1 ==="
+    docker pull "$1" && docker-compose up -d --force-recreate "$1"
+    echo ""
 }
 
-# --- Menú principal ---
+# Menú simple
 while true; do
-    echo ""
-    echo "=== MENÚ DE ACTUALIZACIÓN ==="
-    echo "1) Actualizar todos los servicios"
+    echo "=== MENÚ ==="
+    echo "1) Actualizar TODOS"
     i=2
     for service in $SERVICES; do
-        echo "$i) Actualizar $service"
+        echo "$i) $service"
         i=$((i+1))
     done
     echo "q) Salir"
     echo ""
-    printf "Seleccione una opción: "
-    read choice
-    
-    case $choice in
-        1)
-            echo "Actualizando TODOS los servicios..."
+    printf "Opción: "
+    read opcion
+
+    case $opcion in
+        1) 
             for service in $SERVICES; do
                 update_container "$service"
             done
             ;;
-        [2-9])
-            index=$((choice-1))
-            service=$(echo $SERVICES | cut -d' ' -f$index)
-            if [ -n "$service" ]; then
-                update_container "$service"
-            else
-                echo "Opción inválida"
-            fi
-            ;;
-        q|Q)
-            echo "Saliendo..."
-            exit 0
-            ;;
-        *)
-            echo "Opción no válida"
-            ;;
+        2) update_container "homeassistant" ;;
+        3) update_container "mosquitto" ;;
+        4) update_container "zigbee2mqtt" ;;
+        5) update_container "nodered" ;;
+        6) update_container "esphome" ;;
+        q) exit ;;
+        *) echo "Opción inválida" ;;
     esac
 done
