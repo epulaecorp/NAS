@@ -1,3 +1,3 @@
 sudo rm -f /volume1/docker/*.sh /volume1/docker/docker-compose.yml
 
-sudo mkdir -p /volume1/docker && cd /volume1/docker && sudo wget --no-check-certificate -q https://raw.githubusercontent.com/epulaecorp/NAS/main/{docker-compose.yml,setup.sh,updater.sh} && sudo chmod +x *.sh
+sudo sh -c 'mkdir -p /volume1/docker && cd /volume1/docker && echo "ℹ️  Descargando las últimas versiones de los scripts de instalación..." && wget -q -O setup.sh https://raw.githubusercontent.com/epulaecorp/NAS/main/setup.sh && wget -q -O updater.sh https://raw.githubusercontent.com/epulaecorp/NAS/main/updater.sh && chmod +x setup.sh updater.sh && echo -e "\n\n✅ \033[1;32m¡Preparación completada!\033[0m Los scripts están listos y actualizados.\n\nℹ️ \033[1;34mPara iniciar la instalación, ejecuta el siguiente comando:\033[0m\n\n    \033[1;33msudo /volume1/docker/setup.sh\033[0m\n"'
