@@ -3,7 +3,7 @@
 # Script de instalación para stack domótico, COMPATIBLE CON SYNOLOGY (ash/sh)
 # Autor: epulaecorp
 # Repositorio: https://github.com/epulaecorp/NAS
-# Versión: 3.2 (POSIX Compliant)
+# Versión: 3.3 (con soporte para Wyoming Piper/Whisper)
 # ============================================================================
 
 # 'e' sale en error, 'o pipefail' asegura que los errores en tuberías fallen.
@@ -88,6 +88,10 @@ mkdir -p "${DOCKER_ROOT}/vcode"
 mkdir -p "${DOCKER_ROOT}/zigbee2mqtt/data"
 mkdir -p "${DOCKER_ROOT}/Updates"
 mkdir -p "${DOCKER_ROOT}/music-assistant-server/data"
+# ▼▼▼ CAMBIO: Añadir directorios para Piper y Whisper ▼▼▼
+mkdir -p "${DOCKER_ROOT}/piper-data"
+mkdir -p "${DOCKER_ROOT}/whisper-data"
+# ▲▲▲ FIN DEL CAMBIO ▲▲▲
 log_success "Estructura de directorios creada."
 
 # ============================================================================
@@ -105,7 +109,11 @@ for dir in \
   "${DOCKER_ROOT}/mosquitto/log" \
   "${DOCKER_ROOT}/vcode" \
   "${DOCKER_ROOT}/zigbee2mqtt/data" \
-  "${DOCKER_ROOT}/music-assistant-server/data"
+  "${DOCKER_ROOT}/music-assistant-server/data" \
+  # ▼▼▼ CAMBIO: Añadir los nuevos directorios a la lista de permisos ▼▼▼
+  "${DOCKER_ROOT}/piper-data" \
+  "${DOCKER_ROOT}/whisper-data"
+  # ▲▲▲ FIN DEL CAMBIO ▲▲▲
 do
   log_info "Ajustando permisos en $dir"
   chown -R "$APP_UID:$APP_GID" "$dir"
@@ -191,4 +199,9 @@ printf "VS Code:            http://%s:8443\n" "$LAN_IP"
 printf "Zigbee2MQTT:        http://%s:8080\n" "$LAN_IP"
 printf "ESPHome:            http://%s:6052\n" "$LAN_IP"
 printf "Music Assistant:    http://%s:8095\n" "$LAN_IP"
+# ▼▼▼ CAMBIO: Añadir los nuevos servicios al resumen final ▼▼▼
+# No tienen interfaz web, pero es bueno saber que están ahí.
+printf "Piper (TTS):        wyoming://%s:10200\n" "$LAN_IP"
+printf "Whisper (STT):      wyoming://%s:10300\n" "$LAN_IP"
+# ▲▲▲ FIN DEL CAMBIO ▲▲▲
 printf "\nPara administrar actualizaciones, usa el comando:\n\033[1;32m./docker-updater.sh\033[0m\n"
