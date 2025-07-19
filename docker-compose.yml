@@ -2,35 +2,34 @@ version: '3.8'
 
 services:
   homeassistant:
+    # Sin cambios en este servicio
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
       - /volume1/docker/homeassistant:/config
-      - /var/run/docker.sock:/var/run/docker.sock 
+      - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     network_mode: host
 
   esphome:
+    # Sin cambios en este servicio
     container_name: esphome
     image: ghcr.io/esphome/esphome
     volumes:
       - /volume1/docker/esphome/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
-    # 'privileged: true' es necesario si quieres flashear dispositivos ESP por USB desde la NAS.
-    # Si solo compilas y descargas, o usas OTA, puedes eliminar la siguiente línea.
-    # privileged: true 
     network_mode: host
     environment:
-      # Puedes cambiar el usuario y la contraseña de la interfaz web de ESPHome aquí
       - USERNAME=admin
       - PASSWORD=Iz022394
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
   nodered:
+    # Sin cambios en este servicio
     container_name: nodered
     image: nodered/node-red:latest
     volumes:
@@ -44,10 +43,10 @@ services:
       - com.centurylinklabs.watchtower.enable=true
 
   mosquitto:
+    # Sin cambios en este servicio
     container_name: mosquitto
     image: eclipse-mosquitto:latest
     volumes:
-      # Asegúrate de que el archivo 'mosquitto.conf' exista en la carpeta del host antes de iniciar.
       - /volume1/docker/mosquitto/config:/mosquitto/config
       - /volume1/docker/mosquitto/data:/mosquitto/data
       - /volume1/docker/mosquitto/log:/mosquitto/log
@@ -59,6 +58,7 @@ services:
       - TZ=America/Mexico_City
 
   zigbee2mqtt:
+    # Sin cambios en este servicio
     container_name: zigbee2mqtt
     image: koenkk/zigbee2mqtt
     volumes:
@@ -68,30 +68,25 @@ services:
     ports:
       - "8080:8080"
     devices:
-      # ▼▼▼ ¡CRÍTICO! DEBES CAMBIAR ESTO POR LA RUTA REAL DE TU DONGLE ZIGBEE ▼▼▼
-      - /dev/ttyACM0:/dev/ttyACM0   # Descomenta y usa esta línea si tu dongle es ttyACM0
-      # - /dev/ttyUSB0:/dev/ttyUSB0   # Descomenta y usa esta línea si tu dongle es ttyUSB0
-      # Es muy probable que sea una de las dos de arriba.
+      - /dev/ttyACM0:/dev/ttyACM0
     environment:
       - TZ=America/Mexico_City
 
   codeserver:
-    image: linuxserver/code-server:latest
+    # Sin cambios en este servicio
     container_name: codeserver
+    image: linuxserver/code-server:latest
     volumes:
       - /volume1/docker/vcode:/config
-      # Estos mapeos te permiten editar tus archivos de Home Assistant y ESPHome desde Code-Server
       - /volume1/docker/homeassistant:/config/workspace/HomeAssistant
       - /volume1/docker/esphome:/config/workspace/ESPHome
     restart: unless-stopped
     ports:
       - "8443:8443"
     environment:
-      # Se ejecuta como root para máxima compatibilidad en Synology sin configuración manual.
       - PUID=0
       - PGID=0
       - TZ=America/Mexico_City
-      # Contraseñas para la interfaz web de Code-Server
       - PASSWORD=Iz022394
       - SUDO_PASSWORD=Iz0222394
       - DEFAULT_WORKSPACE=/config/workspace
@@ -99,8 +94,9 @@ services:
       - com.centurylinklabs.watchtower.enable=true
 
   music-assistant-server:
-    image: ghcr.io/music-assistant/server:latest
+    # Sin cambios en este servicio
     container_name: music-assistant-server
+    image: ghcr.io/music-assistant/server:latest
     restart: unless-stopped
     network_mode: host
     volumes:
@@ -116,13 +112,63 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
+  # =========================================================================
+  # ▼▼▼ NUEVOS SERVICIOS DE VOZ ▼▼▼
+  # =========================================================================
+
+  piper:
+    container_name: piper
+    image: "rhasspy/wyoming-piper:latest"
+    restart: unless-stopped
+    ports:
+      # Puerto para que Home Assistant se comunique con Piper
+      - "10200:10200"
+    volumes:
+      # Mapeamos un volumen para que guarde los modelos de voz y no los descargue cada vez.
+      - /volume1/docker/piper-data:/data
+    environment:
+      - TZ=America/Mexico_City
+    command:
+      # Seleccionamos una voz en español de alta calidad.
+      - --voice=es_ES-carlota-high
+    labels:
+      # Habilitamos Watchtower para que actualice este contenedor.
+      - com.centurylinklabs.watchtower.enable=true
+
+  whisper:
+    container_name: whisper
+    image: "rhasspy/wyoming-whisper:latest"
+    restart: unless-stopped
+    ports:
+      # Puerto para que Home Assistant se comunique con Whisper
+      - "10300:10300"
+    volumes:
+      # Mapeamos un volumen para que guarde los modelos de reconocimiento.
+      - /volume1/docker/whisper-data:/data
+    environment:
+      - TZ=America/Mexico_City
+    command:
+      # Modelo 'base' es un buen punto de partida para una NAS.
+      # Si el rendimiento es bajo, puedes cambiar a 'tiny-int8'.
+      # Si tu NAS es potente, puedes probar con 'small'.
+      - --model=base
+      - --language=es
+    labels:
+      # Habilitamos Watchtower para que actualice este contenedor.
+      - com.centurylinklabs.watchtower.enable=true
+
+  # =========================================================================
+  # ▲▲▲ FIN DE NUEVOS SERVICIOS DE VOZ ▲▲▲
+  # =========================================================================
+
   watchtower:
+    # Sin cambios en este servicio
     image: containrrr/watchtower
-    container_name: watchtower 
-    volumes: 
+    container_name: watchtower
+    volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
-    environment: 
+    environment:
       - TZ=America/Mexico_City
       - WATCHTOWER_CLEANUP=true
       - WATCHTOWER_SCHEDULE=0 0 5 * * 5 # Actualiza los viernes a las 5 AM
