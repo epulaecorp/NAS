@@ -3,7 +3,7 @@
 # Script de instalación para stack domótico, COMPATIBLE CON SYNOLOGY (ash/sh)
 # Autor: epulaecorp
 # Repositorio: https://github.com/epulaecorp/NAS
-# Versión: 3.3 (con soporte para Wyoming Piper/Whisper)
+# Versión: 3.4 (con soporte para AppDaemon, Piper y Whisper)
 # ============================================================================
 
 # 'e' sale en error, 'o pipefail' asegura que los errores en tuberías fallen.
@@ -88,9 +88,10 @@ mkdir -p "${DOCKER_ROOT}/vcode"
 mkdir -p "${DOCKER_ROOT}/zigbee2mqtt/data"
 mkdir -p "${DOCKER_ROOT}/Updates"
 mkdir -p "${DOCKER_ROOT}/music-assistant-server/data"
-# ▼▼▼ CAMBIO: Añadir directorios para Piper y Whisper ▼▼▼
+# ▼▼▼ CAMBIO: Añadir directorios para Piper, Whisper y AppDaemon ▼▼▼
 mkdir -p "${DOCKER_ROOT}/piper-data"
 mkdir -p "${DOCKER_ROOT}/whisper-data"
+mkdir -p "${DOCKER_ROOT}/appdaemon"
 # ▲▲▲ FIN DEL CAMBIO ▲▲▲
 log_success "Estructura de directorios creada."
 
@@ -112,7 +113,8 @@ for dir in \
   "${DOCKER_ROOT}/music-assistant-server/data" \
   # ▼▼▼ CAMBIO: Añadir los nuevos directorios a la lista de permisos ▼▼▼
   "${DOCKER_ROOT}/piper-data" \
-  "${DOCKER_ROOT}/whisper-data"
+  "${DOCKER_ROOT}/whisper-data" \
+  "${DOCKER_ROOT}/appdaemon"
   # ▲▲▲ FIN DEL CAMBIO ▲▲▲
 do
   log_info "Ajustando permisos en $dir"
@@ -195,12 +197,12 @@ LAN_IP=$(ip route get 1.1.1.1 | awk '{print $7; exit}')
 printf "\n\033[1;35mAcceso a los servicios:\033[0m\n"
 printf "Home Assistant:     http://%s:8123\n" "$LAN_IP"
 printf "Node-RED:           http://%s:1880\n" "$LAN_IP"
+printf "AppDaemon:          http://%s:5050\n" "$LAN_IP"
 printf "VS Code:            http://%s:8443\n" "$LAN_IP"
 printf "Zigbee2MQTT:        http://%s:8080\n" "$LAN_IP"
 printf "ESPHome:            http://%s:6052\n" "$LAN_IP"
 printf "Music Assistant:    http://%s:8095\n" "$LAN_IP"
 # ▼▼▼ CAMBIO: Añadir los nuevos servicios al resumen final ▼▼▼
-# No tienen interfaz web, pero es bueno saber que están ahí.
 printf "Piper (TTS):        wyoming://%s:10200\n" "$LAN_IP"
 printf "Whisper (STT):      wyoming://%s:10300\n" "$LAN_IP"
 # ▲▲▲ FIN DEL CAMBIO ▲▲▲
