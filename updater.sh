@@ -2,7 +2,7 @@
 # ============================================================================
 # Script de Mantenimiento y Actualización para Stack Domótico en Synology
 # Autor: Asistente de IA (basado en petición y estilo de epulaecorp)
-# Versión: 1.1 (con soporte para Wyoming Piper/Whisper)
+# Versión: 1.2 (con soporte para AppDaemon, Piper y Whisper)
 #
 # Funcionalidades:
 # - Menú interactivo para seleccionar la acción.
@@ -77,15 +77,16 @@ fix_permissions() {
         zigbee2mqtt) service_volume_path="${DOCKER_ROOT}/zigbee2mqtt" ;;
         codeserver|vcode) service_volume_path="${DOCKER_ROOT}/vcode" ;;
         music-assistant-server) service_volume_path="${DOCKER_ROOT}/music-assistant-server" ;;
-        # ▼▼▼ CAMBIO: Añadir mapeo para Piper y Whisper ▼▼▼
         piper) service_volume_path="${DOCKER_ROOT}/piper-data" ;;
         whisper) service_volume_path="${DOCKER_ROOT}/whisper-data" ;;
+        # ▼▼▼ CAMBIO: Añadir mapeo para AppDaemon ▼▼▼
+        appdaemon) service_volume_path="${DOCKER_ROOT}/appdaemon" ;;
         # ▲▲▲ FIN DEL CAMBIO ▲▲▲
         all)
             log_info "Aplicando permisos a todos los volúmenes conocidos..."
             # Llama a esta misma función para cada servicio individual
-            # ▼▼▼ CAMBIO: Añadir los nuevos servicios a la lista de "todos" ▼▼▼
-            for srv in homeassistant esphome nodered mosquitto zigbee2mqtt vcode music-assistant-server piper whisper; do
+            # ▼▼▼ CAMBIO: Añadir AppDaemon a la lista de "todos" ▼▼▼
+            for srv in homeassistant esphome nodered mosquitto zigbee2mqtt vcode music-assistant-server piper whisper appdaemon; do
             # ▲▲▲ FIN DEL CAMBIO ▲▲▲
                 fix_permissions "$srv"
             done
@@ -153,8 +154,8 @@ display_menu() {
     printf "\n"
 }
 
-# ▼▼▼ CAMBIO: Añadir los nuevos servicios a la lista para el menú interactivo ▼▼▼
-SERVICES="homeassistant esphome nodered mosquitto zigbee2mqtt codeserver music-assistant-server piper whisper watchtower"
+# ▼▼▼ CAMBIO: Añadir AppDaemon a la lista para el menú interactivo ▼▼▼
+SERVICES="homeassistant esphome nodered mosquitto zigbee2mqtt codeserver music-assistant-server piper whisper appdaemon watchtower"
 # ▲▲▲ FIN DEL CAMBIO ▲▲▲
 
 display_menu
