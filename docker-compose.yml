@@ -2,7 +2,6 @@ version: '3.8'
 
 services:
   homeassistant:
-    # Sin cambios en este servicio
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
@@ -28,7 +27,6 @@ services:
       - com.centurylinklabs.watchtower.enable=true
 
   esphome:
-    # Sin cambios en este servicio
     container_name: esphome
     image: ghcr.io/esphome/esphome
     volumes:
@@ -43,7 +41,6 @@ services:
       - com.centurylinklabs.watchtower.enable=true
 
   nodered:
-    # Sin cambios en este servicio
     container_name: nodered
     image: nodered/node-red:latest
     volumes:
@@ -57,7 +54,6 @@ services:
       - com.centurylinklabs.watchtower.enable=true
 
   mosquitto:
-    # Sin cambios en este servicio
     container_name: mosquitto
     image: eclipse-mosquitto:latest
     volumes:
@@ -72,7 +68,6 @@ services:
       - TZ=America/Mexico_City
 
   zigbee2mqtt:
-    # Sin cambios en este servicio
     container_name: zigbee2mqtt
     image: koenkk/zigbee2mqtt
     volumes:
@@ -87,7 +82,6 @@ services:
       - TZ=America/Mexico_City
 
   codeserver:
-    # Sin cambios en este servicio
     container_name: codeserver
     image: linuxserver/code-server:latest
     volumes:
@@ -108,7 +102,6 @@ services:
       - com.centurylinklabs.watchtower.enable=true
 
   music-assistant-server:
-    # Sin cambios en este servicio
     container_name: music-assistant-server
     image: ghcr.io/music-assistant/server:latest
     restart: unless-stopped
@@ -126,27 +119,19 @@ services:
     labels:
       - com.centurylinklabs.watchtower.enable=true
 
-  # =========================================================================
-  # ▼▼▼ NUEVOS SERVICIOS DE VOZ ▼▼▼
-  # =========================================================================
-
   piper:
     container_name: piper
     image: "rhasspy/wyoming-piper:latest"
     restart: unless-stopped
     ports:
-      # Puerto para que Home Assistant se comunique con Piper
       - "10200:10200"
     volumes:
-      # Mapeamos un volumen para que guarde los modelos de voz y no los descargue cada vez.
       - /volume1/docker/piper-data:/data
     environment:
       - TZ=America/Mexico_City
     command:
-      # Seleccionamos una voz en español de alta calidad.
       - --voice=es_ES-carlota-high
     labels:
-      # Habilitamos Watchtower para que actualice este contenedor.
       - com.centurylinklabs.watchtower.enable=true
 
   whisper:
@@ -154,29 +139,18 @@ services:
     image: "rhasspy/wyoming-whisper:latest"
     restart: unless-stopped
     ports:
-      # Puerto para que Home Assistant se comunique con Whisper
       - "10300:10300"
     volumes:
-      # Mapeamos un volumen para que guarde los modelos de reconocimiento.
       - /volume1/docker/whisper-data:/data
     environment:
       - TZ=America/Mexico_City
     command:
-      # Modelo 'base' es un buen punto de partida para una NAS.
-      # Si el rendimiento es bajo, puedes cambiar a 'tiny-int8'.
-      # Si tu NAS es potente, puedes probar con 'small'.
       - --model=base
       - --language=es
     labels:
-      # Habilitamos Watchtower para que actualice este contenedor.
       - com.centurylinklabs.watchtower.enable=true
 
-  # =========================================================================
-  # ▲▲▲ FIN DE NUEVOS SERVICIOS DE VOZ ▲▲▲
-  # =========================================================================
-
   watchtower:
-    # Sin cambios en este servicio
     image: containrrr/watchtower
     container_name: watchtower
     volumes:
@@ -185,5 +159,5 @@ services:
     environment:
       - TZ=America/Mexico_City
       - WATCHTOWER_CLEANUP=true
-      - WATCHTOWER_SCHEDULE=0 0 5 * * 5 # Actualiza los viernes a las 5 AM
+      - WATCHTOWER_SCHEDULE=0 0 5 * * 5 
       - WATCHTOWER_LABEL_ENABLE=true
