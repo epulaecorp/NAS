@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
     network_mode: host
 
-  appdaemon:
+ appdaemon:
   latitude: 0
   longitude: 0
   elevation: 0
@@ -24,11 +24,9 @@ services:
       type: hass
       ha_url: "http://192.168.0.250:8123"
       token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzMjk3MjBlNTdiNzg0MzczYWE3Nzk5M2NhZmUyNjk1YiIsImlhdCI6MTc2NDExODMwNiwiZXhwIjoyMDc5NDc4MzA2fQ.L7qWuGj3hQEJaZ5aIcftvDhPz3Vy2KBw7VBeEbXwQtc"
-
 http:
   url: http://192.168.0.250:5050
   port: 5050
-
 hadashboard:
   dash_url: http://192.168.0.250:5050
   dash_dir: /conf/dashboards
