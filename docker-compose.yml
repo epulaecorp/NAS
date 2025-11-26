@@ -13,18 +13,26 @@ services:
     network_mode: host
 
   appdaemon:
-    container_name: appdaemon
-    image: acockburn/appdaemon:latest
-    volumes:
-      - /volume1/docker/appdaemon:/conf
-      - /etc/localtime:/etc/localtime:ro
-    ports:
-      - "5050:5050"
-    restart: unless-stopped
-    environment:
-      - TZ=America/Mexico_City
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
+  latitude: 0
+  longitude: 0
+  elevation: 0
+  time_zone: America/Mexico_City
+  threads: 10
+  app_dir: /conf/apps
+  plugins:
+    HASS:
+      type: hass
+      ha_url: "http://192.168.0.250:8123"
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzMjk3MjBlNTdiNzg0MzczYWE3Nzk5M2NhZmUyNjk1YiIsImlhdCI6MTc2NDExODMwNiwiZXhwIjoyMDc5NDc4MzA2fQ.L7qWuGj3hQEJaZ5aIcftvDhPz3Vy2KBw7VBeEbXwQtc"
+
+http:
+  url: http://192.168.0.250:5050
+  port: 5050
+
+hadashboard:
+  dash_url: http://192.168.0.250:5050
+  dash_dir: /conf/dashboards
+
 
   esphome:
     container_name: esphome
