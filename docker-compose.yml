@@ -17,7 +17,7 @@ services:
     container_name: appdaemon
     restart: unless-stopped
     ports:
-      - "5050:5050" # Puerto web para la interfaz de AppDaemon
+      - "5050:5050"
     volumes:
       - /volume1/docker/appdaemon/conf:/conf 
       - /etc/localtime:/etc/localtime:ro
