@@ -87,6 +87,7 @@ services:
       - /volume1/docker/vcode:/config
       - /volume1/docker/homeassistant:/config/workspace/HomeAssistant
       - /volume1/docker/esphome:/config/workspace/ESPHome
+      - /volume1/docker/appdaemon:/config/workspace/APPDaemon
     restart: unless-stopped
     ports:
       - "8443:8443"
