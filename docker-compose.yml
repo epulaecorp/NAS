@@ -19,7 +19,7 @@ services:
     ports:
       - "5050:5050" # Puerto web para la interfaz de AppDaemon
     volumes:
-      - volume1/docker/appdaemon/conf:/conf 
+      - /volume1/docker/appdaemon/conf:/conf 
       - /etc/localtime:/etc/localtime:ro
     environment:
       - HA_URL=http://192.168.0.250.8123
