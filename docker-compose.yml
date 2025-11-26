@@ -13,7 +13,7 @@ services:
     network_mode: host
   
   appdaemon:
-    image: "appdaemon/appdaemon:latest"
+    image: "acockburn/appdaemon:latest"
     container_name: appdaemon
     restart: unless-stopped
     ports:
