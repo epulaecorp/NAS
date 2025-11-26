@@ -19,7 +19,8 @@ services:
     ports:
       - "5050:5050" # Puerto web para la interfaz de AppDaemon
     volumes:
-      - ./conf:/conf # Monta el directorio local 'conf' para configuración persistente
+      - volume1/docker/appdaemon/conf:/conf 
+      - /etc/localtime:/etc/localtime:ro
     environment:
       - HA_URL=http://192.168.0.250.8123
       - TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzMjk3MjBlNTdiNzg0MzczYWE3Nzk5M2NhZmUyNjk1YiIsImlhdCI6MTc2NDExODMwNiwiZXhwIjoyMDc5NDc4MzA2fQ.L7qWuGj3hQEJaZ5aIcftvDhPz3Vy2KBw7VBeEbXwQtc
