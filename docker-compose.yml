@@ -101,56 +101,7 @@ services:
       - DEFAULT_WORKSPACE=/config/workspace
     labels:
       - com.centurylinklabs.watchtower.enable=true
-
-  music-assistant-server:
-    container_name: music-assistant-server
-    image: ghcr.io/music-assistant/server:latest
-    restart: unless-stopped
-    network_mode: host
-    volumes:
-      - /volume1/docker/music-assistant-server/data:/data
-    cap_add:
-      - SYS_ADMIN
-      - DAC_READ_SEARCH
-    security_opt:
-      - apparmor:unconfined
-    environment:
-      - LOG_LEVEL=info
-      - TZ=America/Mexico_City
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
-
-  piper:
-    container_name: piper
-    image: "rhasspy/wyoming-piper:latest"
-    restart: unless-stopped
-    ports:
-      - "10200:10200"
-    volumes:
-      - /volume1/docker/piper-data:/data
-    environment:
-      - TZ=America/Mexico_City
-    command:
-      - --voice=es_ES-carlota-high
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
-
-  whisper:
-    container_name: whisper
-    image: "rhasspy/wyoming-whisper:latest"
-    restart: unless-stopped
-    ports:
-      - "10300:10300"
-    volumes:
-      - /volume1/docker/whisper-data:/data
-    environment:
-      - TZ=America/Mexico_City
-    command:
-      - --model=base
-      - --language=es
-    labels:
-      - com.centurylinklabs.watchtower.enable=true
-
+      
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
