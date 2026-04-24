@@ -25,7 +25,9 @@ services:
       - TZ=America/Mexico_City
       - HA_URL=http://192.168.0.250:8123
       - TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIzMjk3MjBlNTdiNzg0MzczYWE3Nzk5M2NhZmUyNjk1YiIsImlhdCI6MTc2NDExODMwNiwiZXhwIjoyMDc5NDc4MzA2fQ.L7qWuGj3hQEJaZ5aIcftvDhPz3Vy2KBw7VBeEbXwQtc
-
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      
   esphome:
     container_name: esphome
     image: ghcr.io/esphome/esphome
@@ -66,6 +68,8 @@ services:
       - "9001:9001"
     environment:
       - TZ=America/Mexico_City
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
 
   zigbee2mqtt:
     container_name: zigbee2mqtt
@@ -80,6 +84,8 @@ services:
       - /dev/ttyACM0:/dev/ttyACM0
     environment:
       - TZ=America/Mexico_City
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
 
   codeserver:
     container_name: codeserver
